@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (velMagnitude > maxVelocity)
         {
-            currentVelocity *= (maxVelocity / velMagnitude);
+            currentVelocity = maxVelocity * currentVelocity.normalized;
         }
 
         // Check for walls and obstacles
