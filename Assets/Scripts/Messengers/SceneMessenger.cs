@@ -7,6 +7,9 @@ public class SceneMessenger : MonoBehaviour, IMessenger
     public static SceneMessenger Instance { get; private set; }
     private Dictionary<Message, List<Delegate>> callbacks;
 
+    public delegate void HealthChangeCallback(int currentHealth, int change);
+    public delegate void VoidCallback();
+
     void Awake()
     {
         if (Instance != null)
@@ -26,9 +29,20 @@ public class SceneMessenger : MonoBehaviour, IMessenger
     {
         if (callbacks.ContainsKey(msg))
         {
-            foreach (Delegate callback in callbacks[msg])
+            switch (msg)
             {
-                callback.DynamicInvoke();
+                case Message.PLAYER_HEALTH_LOST:
+                    foreach (Delegate callback in callbacks[msg])
+                    {
+                        callback.DynamicInvoke(args[0], args[1]);
+                    }
+                    break;
+                default:
+                    foreach (Delegate callback in callbacks[msg])
+                    {
+                        callback.DynamicInvoke();
+                    }
+                    break;
             }
         }
     }

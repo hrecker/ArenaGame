@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114564543369339910}
   - component: {fileID: 58430158439773420}
   - component: {fileID: 50991060685926868}
-  - component: {fileID: 114117866388099738}
+  - component: {fileID: 114641798640826936}
   m_Layer: 0
   m_Name: PlayerBullet
   m_TagString: PlayerShot
@@ -80,17 +80,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.16
---- !u!114 &114117866388099738
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1323799872595714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19982d58e57aa3e4a9cc935fd2a4ae61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114564543369339910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -103,6 +92,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 1, y: 1}
+--- !u!114 &114641798640826936
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1323799872595714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3804a84761638049bf226fae467c5de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  maxHitsBeforeDestroyed: 1
 --- !u!114 &114857288986661462
 MonoBehaviour:
   m_ObjectHideFlags: 1

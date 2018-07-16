@@ -14,15 +14,7 @@ public class EnemyHealth : MonoBehaviour
         messenger = this.GetMessenger();
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.gameObject.CompareTag("PlayerShot"))
-        {
-            TakeDamage(1);
-        }
-    }
-
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         health -= damage;
         if (health < 0)
@@ -33,11 +25,11 @@ public class EnemyHealth : MonoBehaviour
         // Send message to any other enemy scripts
         if (damage > 0)
         {
-            messenger.Invoke(Message.HEALTH_LOST, null);
+            messenger.Invoke(Message.HEALTH_LOST, new object[] { health, damage });
         }
         if (health == 0)
         {
-            messenger.Invoke(Message.NO_HEALTH_REMAINING, null);
+            messenger.Invoke(Message.NO_HEALTH_REMAINING, new object[] { damage });
         }
     }
 }
