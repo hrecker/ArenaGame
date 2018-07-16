@@ -42,9 +42,10 @@ GameObject:
   - component: {fileID: 61578742207911274}
   - component: {fileID: 114558086897344276}
   - component: {fileID: 114562463290149400}
+  - component: {fileID: 114807626708337696}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -205,6 +206,17 @@ MonoBehaviour:
     type: 2}
   minFireInterval: 0.25
   bulletSpeed: 15
+--- !u!114 &114807626708337696
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1443061045935268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 400dbf5645dfefc4d8db4b1d9fb7a4ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212454801021324988
 SpriteRenderer:
   m_ObjectHideFlags: 1

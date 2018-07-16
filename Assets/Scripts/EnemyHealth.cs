@@ -6,19 +6,18 @@ public class EnemyHealth : MonoBehaviour
 {
     public int health = 3;
     public int maxHealth = 3;
+    private IMessenger messenger;
 
     void Start ()
     {
         health = maxHealth;
+        messenger = this.GetMessenger();
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        // Hit by player bullet
-        // TODO make this better
-        if (collision.gameObject.name.StartsWith("PlayerBullet"))
+        if (collider.gameObject.CompareTag("PlayerShot"))
         {
-            Destroy(collision.gameObject);
             TakeDamage(1);
         }
     }
@@ -30,9 +29,15 @@ public class EnemyHealth : MonoBehaviour
         {
             health = 0;
         }
+
+        // Send message to any other enemy scripts
+        if (damage > 0)
+        {
+            messenger.Invoke(Message.HEALTH_LOST, null);
+        }
         if (health == 0)
         {
-            Destroy(gameObject);
+            messenger.Invoke(Message.NO_HEALTH_REMAINING, null);
         }
     }
 }
