@@ -12,11 +12,11 @@ public class PlayerShotDamage : MonoBehaviour
     {
         if (!collider.gameObject.CompareTag("Player") && hits < maxHitsBeforeDestroyed)
         {
+            hits++;
             EnemyHealth enemy = collider.GetComponent<EnemyHealth>();
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);
-                hits++;
             }
         }
         if (hits >= maxHitsBeforeDestroyed)
