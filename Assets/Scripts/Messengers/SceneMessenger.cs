@@ -8,6 +8,7 @@ public class SceneMessenger : MonoBehaviour, IMessenger
     private Dictionary<Message, List<Delegate>> callbacks;
 
     public delegate void HealthChangeCallback(int currentHealth, int change);
+    public delegate void EnemyCallback(EnemyType type);
     public delegate void VoidCallback();
 
     void Awake()
@@ -22,7 +23,6 @@ public class SceneMessenger : MonoBehaviour, IMessenger
         {
             callbacks = new Dictionary<Message, List<Delegate>>();
         }
-
     }
 
     public void Invoke(Message msg, object[] args)
@@ -35,6 +35,12 @@ public class SceneMessenger : MonoBehaviour, IMessenger
                     foreach (Delegate callback in callbacks[msg])
                     {
                         callback.DynamicInvoke(args[0], args[1]);
+                    }
+                    break;
+                case Message.ENEMY_DEFEATED:
+                    foreach (Delegate callback in callbacks[msg])
+                    {
+                        callback.DynamicInvoke(args[0]);
                     }
                     break;
                 default:

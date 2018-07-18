@@ -12,7 +12,6 @@ public class PlayerShotDamage : MonoBehaviour
     {
         if (!collider.gameObject.CompareTag("Player") && hits < maxHitsBeforeDestroyed)
         {
-            Debug.Log("hit");
             EnemyHealth enemy = collider.GetComponent<EnemyHealth>();
             if (enemy != null)
             {

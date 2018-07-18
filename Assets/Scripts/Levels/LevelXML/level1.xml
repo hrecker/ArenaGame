@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Level>
+  <LevelNumber>1</LevelNumber>
+  <CompletionPoints>100</CompletionPoints>
+  <Stage>
+    <EnemySpawn>
+      <EnemyType>SQUARE</EnemyType>
+      <SpawnLocation>
+		<X>-2</X>
+		<Y>2</Y>
+	  </SpawnLocation>
+	  <SpawnTiming>0</SpawnTiming>
+	</EnemySpawn>
+    <EnemySpawn>
+      <EnemyType>SQUARE</EnemyType>
+      <SpawnLocation>
+		<X>2</X>
+		<Y>2</Y>
+	  </SpawnLocation>
+	  <SpawnTiming>0</SpawnTiming>
+	</EnemySpawn>
+    <EnemySpawn>
+      <EnemyType>SQUARE</EnemyType>
+      <SpawnLocation>
+		<X>2</X>
+		<Y>-2</Y>
+	  </SpawnLocation>
+	  <SpawnTiming>0</SpawnTiming>
+	</EnemySpawn>
+    <EnemySpawn>
+      <EnemyType>SQUARE</EnemyType>
+      <SpawnLocation>
+		<X>-2</X>
+		<Y>-2</Y>
+	  </SpawnLocation>
+	  <SpawnTiming>0</SpawnTiming>
+	</EnemySpawn>
+  </Stage>
+</Level>
