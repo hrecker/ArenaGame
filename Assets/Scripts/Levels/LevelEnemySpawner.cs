@@ -8,29 +8,33 @@ public class LevelEnemySpawner : MonoBehaviour
     public GameObject squareEnemy;
 
     private List<Level> levels;
-    private int currentLevelNumber;
+    private int currentLevelIndex;
     private float currentStageTimePassed;
-    private int currentStageNumber;
+    private int currentStageIndex;
     private int currentStageEnemyNumber;
     private int enemiesDefeatedThisStage;
     private const float enemyZLevel = 1;
     private bool allLevelsComplete;
+    private bool levelActive;
     
 	void Start () 
 	{
         SceneMessenger.Instance.AddListener(Message.ENEMY_DEFEATED, new SceneMessenger.EnemyCallback(EnemyDefeated));
+        SceneMessenger.Instance.AddListener(Message.LEVEL_STARTED, new SceneMessenger.VoidCallback(StartNextLevel));
         levels = LevelLoader.LoadAllLevels();
-        currentLevelNumber = -1;
+        currentLevelIndex = -1;
         allLevelsComplete = false;
-        StartNextLevel();
+        levelActive = false;
+        //StartNextLevel();
 	}
 
-    private void StartNextLevel()
+    public void StartNextLevel()
     {
-        currentLevelNumber++;
-        if (currentLevelNumber < levels.Count)
+        currentLevelIndex++;
+        if (currentLevelIndex < levels.Count)
         {
-            currentStageNumber = -1;
+            levelActive = true;
+            currentStageIndex = -1;
             StartNextStage();
         }
         else
@@ -42,10 +46,11 @@ public class LevelEnemySpawner : MonoBehaviour
 
     private void StartNextStage()
     {
-        currentStageNumber++;
-        if (currentStageNumber >= levels[currentLevelNumber].Stages.Count)
+        currentStageIndex++;
+        if (currentStageIndex >= levels[currentLevelIndex].Stages.Count)
         {
-            StartNextLevel();
+            SceneMessenger.Instance.Invoke(Message.LEVEL_COMPLETED, new object[] { levels[currentLevelIndex], currentLevelIndex >= levels.Count - 1 });
+            levelActive = false;
             return;
         }
 
@@ -56,10 +61,10 @@ public class LevelEnemySpawner : MonoBehaviour
 	
 	void Update () 
 	{
-        if (!allLevelsComplete && currentLevelNumber < levels.Count && currentStageNumber < levels[currentLevelNumber].Stages.Count)
+        if (levelActive && !allLevelsComplete && currentLevelIndex < levels.Count && currentStageIndex < levels[currentLevelIndex].Stages.Count)
         {
             currentStageTimePassed += Time.deltaTime;
-            LevelStage currentStage = levels[currentLevelNumber].Stages[currentStageNumber];
+            LevelStage currentStage = levels[currentLevelIndex].Stages[currentStageIndex];
             for (int i = currentStageEnemyNumber; i < currentStage.Enemies.Count; i++)
             {
                 if (currentStage.SpawnTimings[i] <= currentStageTimePassed)
@@ -78,7 +83,7 @@ public class LevelEnemySpawner : MonoBehaviour
     public void EnemyDefeated(EnemyType type)
     {
         enemiesDefeatedThisStage++;
-        if (enemiesDefeatedThisStage >= levels[currentLevelNumber].Stages[currentStageNumber].Enemies.Count)
+        if (enemiesDefeatedThisStage >= levels[currentLevelIndex].Stages[currentStageIndex].Enemies.Count)
         {
             StartNextStage();
         }

@@ -9,6 +9,7 @@ public class SceneMessenger : MonoBehaviour, IMessenger
 
     public delegate void HealthChangeCallback(int currentHealth, int change);
     public delegate void EnemyCallback(EnemyType type);
+    public delegate void LevelCallback(Level level, bool isLastLevel);
     public delegate void VoidCallback();
 
     void Awake()
@@ -41,6 +42,12 @@ public class SceneMessenger : MonoBehaviour, IMessenger
                     foreach (Delegate callback in callbacks[msg])
                     {
                         callback.DynamicInvoke(args[0]);
+                    }
+                    break;
+                case Message.LEVEL_COMPLETED:
+                    foreach (Delegate callback in callbacks[msg])
+                    {
+                        callback.DynamicInvoke(args[0], args[1]);
                     }
                     break;
                 default:

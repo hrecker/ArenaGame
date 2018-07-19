@@ -12,11 +12,22 @@ public class PointsUI : MonoBehaviour
 	{
         pointsText = GetComponent<Text>();
         SceneMessenger.Instance.AddListener(Message.ENEMY_DEFEATED, new SceneMessenger.EnemyCallback(AddEnemyPoints));
+        SceneMessenger.Instance.AddListener(Message.LEVEL_COMPLETED, new SceneMessenger.LevelCallback(AddLevelCompletionPoints));
 	}
 	
 	public void AddEnemyPoints(EnemyType type)
     {
-        currentPoints += type.GetPointValue();
+        AddPoints(type.GetPointValue());
+    }
+
+    public void AddLevelCompletionPoints(Level level, bool isLastLevel)
+    {
+        AddPoints(level.CompletionPoints);
+    }
+
+    private void AddPoints(int toAdd)
+    {
+        currentPoints += toAdd;
         pointsText.text = currentPoints.ToString();
     }
 }

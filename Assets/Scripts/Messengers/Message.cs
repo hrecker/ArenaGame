@@ -5,5 +5,7 @@ public enum Message
     HEALTH_LOST, // message should include remaining health and damage done
     HEALTH_GAINED, 
     NO_HEALTH_REMAINING, // message should include damage done
-    ENEMY_DEFEATED
+    ENEMY_DEFEATED,
+    LEVEL_STARTED,
+    LEVEL_COMPLETED
 }
