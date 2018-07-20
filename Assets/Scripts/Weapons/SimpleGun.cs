@@ -9,7 +9,12 @@ public class SimpleGun : WeaponBase
     public float bulletSpeed = 15;
     private float timeSinceLastFire;
     private PlayerMovement movement;
-	
+
+    void Start()
+    {
+        timeSinceLastFire = minFireInterval;
+    }
+
 	void Update () 
 	{
         timeSinceLastFire += Time.deltaTime;

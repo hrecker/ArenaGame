@@ -57,15 +57,11 @@ public class PlayerHealth : MonoBehaviour
             if (collider.gameObject.CompareTag("EnemyShot"))
             {
                 TakeDamage(1);
-                invincible = true;
-                invincibilityRemaining = invincibilityTimeOnHit;
-                invincibilityFlashRemaining = invincibilityFlashSpeed;
-                spriteRenderer.enabled = false;
             }
         }
     }
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         health -= damage;
         if (health < 0)
@@ -73,9 +69,13 @@ public class PlayerHealth : MonoBehaviour
             health = 0;
         }
 
-        // Send message to any other player scripts
         if (damage > 0)
         {
+            invincible = true;
+            invincibilityRemaining = invincibilityTimeOnHit;
+            invincibilityFlashRemaining = invincibilityFlashSpeed;
+            spriteRenderer.enabled = false;
+            // Send message to any other player scripts
             messenger.Invoke(Message.HEALTH_LOST, new object[] { health, damage });
         }
         if (health == 0)
