@@ -8,6 +8,7 @@ public class BasicEnemyMovement : MonoBehaviour
     public float maxSpeed = 7.0f;
     public float accelerationScalar = 3.0f;
     private Vector2 currentVelocity = Vector2.zero;
+    private Vector2 size = Vector2.zero;
 
     void Start ()
     {
@@ -15,6 +16,8 @@ public class BasicEnemyMovement : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
+        BoxCollider2D collider = GetComponent<BoxCollider2D>();
+        size = collider.size;
     }
 	
 	void Update () 
@@ -31,6 +34,7 @@ public class BasicEnemyMovement : MonoBehaviour
                 currentVelocity = currentVelocity.normalized * maxSpeed;
             }
 
+            currentVelocity = MovementUtilities.Box2DPreResolveObstacles(currentVelocity, transform.position, size);
             transform.Translate(currentVelocity * Time.deltaTime);
         }
         else
