@@ -4,32 +4,26 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    public float explosionSpriteDuration = 0.5f;
     public float explosionDuration = 0.5f;
     public int damage = 2;
-    private Collider2D explosionCollider;
-    private float currentTimePassed;
+    public float explosionRadius = 0.47f;
     
     void Start ()
     {
-        explosionCollider = GetComponent<Collider2D>();
-        //explosionCollider.enabled = false;
+        Explode();
+        Destroy(gameObject, explosionDuration);
     }
-	
-	void Update () 
-	{
-        currentTimePassed += Time.deltaTime;
-        if (currentTimePassed >= explosionDuration)
+
+    private void Explode()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+        foreach (Collider2D hit in hits)
         {
-            explosionCollider.enabled = false;
-        }
-        if (currentTimePassed >= explosionSpriteDuration)
-        {
-            Destroy(gameObject);
+            DamageEntity(hit);
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    private void DamageEntity(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Player")) // player hit
         {
