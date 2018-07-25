@@ -1,8 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
-public enum ItemType
+[Serializable]
+public struct Item
 {
-    WEAPON_MOD,
-    HEART
+    public string name;
+    public Sprite sprite;
 }

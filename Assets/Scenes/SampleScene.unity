@@ -349,10 +349,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48c8a02b17d9094d89b4a3834ac29e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectItemText: {fileID: 1705787736}
   item1: {fileID: 1871886594}
   item2: {fileID: 2060697800}
   item3: {fileID: 2050384180}
   selector: {fileID: 1434188279}
+  itemSprites:
+  - name: heart
+    sprite: {fileID: 21300000, guid: bd3d1406b5d08cd42b85288473fbacdd, type: 3}
+  - name: heart
+    sprite: {fileID: 21300000, guid: bd3d1406b5d08cd42b85288473fbacdd, type: 3}
+  - name: heart
+    sprite: {fileID: 21300000, guid: bd3d1406b5d08cd42b85288473fbacdd, type: 3}
 --- !u!224 &1241415037 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224588909525402612, guid: 91ab9cf48abefcf4b9bd831332e36adf,
