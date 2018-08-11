@@ -20,6 +20,7 @@ public class LevelUI : MonoBehaviour
 	{
         levelCompleteText.enabled = false;
         SceneMessenger.Instance.AddListener(Message.LEVEL_COMPLETED, new SceneMessenger.LevelCallback(CompleteLevel));
+        SceneMessenger.Instance.AddListener(Message.READY_TO_START_LEVEL, new SceneMessenger.VoidCallback(StartNextLevel));
         currentLevelNum = 0;
         StartNextLevel();
 	}
@@ -28,11 +29,11 @@ public class LevelUI : MonoBehaviour
 	{
 		if (betweenLevel)
         {
-            currentBetweenLevelDelay += Time.deltaTime;
+            /*currentBetweenLevelDelay += Time.deltaTime;
             if (currentBetweenLevelDelay >= betweenLevelDelay)
             {
                 StartNextLevel();
-            }
+            }*/
         }
         else if (startingLevel)
         {

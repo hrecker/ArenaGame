@@ -10,19 +10,16 @@ public class ItemSelectionUI : MonoBehaviour
     public Image item2;
     public Image item3;
     public Image selector;
-    public Item[] itemSprites;
     private bool moveSelectReady;
     private bool itemsEnabled;
+    private int selectedIndex;
+    private Item[] currentItems;
 
     void Awake()
     {
-        selectItemText.enabled = false;
-        item1.enabled = false;
-        item2.enabled = false;
-        item3.enabled = false;
-        selector.enabled = false;
-        itemsEnabled = false;
-        SceneMessenger.Instance.AddListener(Message.LEVEL_COMPLETED, new SceneMessenger.LevelCallback(DisplayItemOptions));
+        SetItemsEnabled(false);
+        SceneMessenger.Instance.AddListener(Message.LEVEL_COMPLETED, new SceneMessenger.LevelCallback(GenerateItemOptions));
+        SceneMessenger.Instance.AddListener(Message.LEVEL_STARTED, new SceneMessenger.VoidCallback(HideItemOptions));
     }
 	
 	void Update () 
@@ -31,49 +28,56 @@ public class ItemSelectionUI : MonoBehaviour
         {
             return;
         }
-
-        float horizontal = Input.GetAxis("Horizontal");
-        if (moveSelectReady)
+        
+        // Moving selection
+        if (Input.GetButtonDown("BumperLeft") && selectedIndex > 0)
         {
-            if (horizontal < -0.5f && selector.rectTransform.localPosition.x >= 0)
-            {
-                selector.rectTransform.localPosition += (150 * Vector3.left);
-                moveSelectReady = false;
-            }
-            else if (horizontal > 0.5f && selector.rectTransform.localPosition.x <= 0)
-            {
-                selector.rectTransform.localPosition += (150 * Vector3.right);
-                moveSelectReady = false;
-            }
+            selector.rectTransform.localPosition += (150 * Vector3.left);
+            moveSelectReady = false;
+            selectedIndex--;
         }
-        else
+        else if (Input.GetButtonDown("BumperRight") && selectedIndex < 2)
         {
-            if (Mathf.Abs(horizontal) < 0.5f)
-            {
-                moveSelectReady = true;
-            }
+            selector.rectTransform.localPosition += (150 * Vector3.right);
+            moveSelectReady = false;
+            selectedIndex++;
+        }
+
+        // Selecting item
+        if (Input.GetButtonDown("Fire1"))
+        {
+            ItemExecutor.ExecuteItem(currentItems[selectedIndex]);
+            HideItemOptions();
+            SceneMessenger.Instance.Invoke(Message.READY_TO_START_LEVEL, null);
         }
     }
 
-    public void DisplayItemOptions(Level level, bool isLastLevel)
+    public void GenerateItemOptions(Level level, bool isLastLevel)
     {
         if (!isLastLevel)
         {
-            //ItemType[] items = ItemRandomizer.RandomizeItems(level.LevelNumber);
-            item1.sprite = itemSprites[0].sprite;
-            item2.sprite = itemSprites[1].sprite;
-            item3.sprite = itemSprites[2].sprite;
-            EnableItems();
+            currentItems = ItemRandomizer.RandomizeItems(level.LevelNumber);
+            item1.sprite = currentItems[0].sprite;
+            item2.sprite = currentItems[1].sprite;
+            item3.sprite = currentItems[2].sprite;
+            SetItemsEnabled(true);
+            selectedIndex = 1;
+            selector.rectTransform.localPosition = new Vector3(0, selector.rectTransform.localPosition.y, selector.rectTransform.localPosition.z);
         }
     }
 
-    public void EnableItems()
+    public void HideItemOptions()
     {
-        selectItemText.enabled = true;
-        item1.enabled = true;
-        item2.enabled = true;
-        item3.enabled = true;
-        selector.enabled = true;
-        itemsEnabled = true;
+        SetItemsEnabled(false);
+    }
+
+    public void SetItemsEnabled(bool enabled)
+    {
+        selectItemText.enabled = enabled;
+        item1.enabled = enabled;
+        item2.enabled = enabled;
+        item3.enabled = enabled;
+        selector.enabled = enabled;
+        itemsEnabled = enabled;
     }
 }

@@ -9,15 +9,24 @@ public class PlayerMovement : MonoBehaviour
     public float maxVelocity = 10.0f;
     Vector2 currentVelocity = Vector2.zero;
     Vector2 size = Vector2.zero;
+    private bool movementEnabled;
 
 	void Start ()
     {
+        //SceneMessenger.Instance.AddListener(Message.STOP_PLAYER_MOVEMENT, new SceneMessenger.VoidCallback(FreezeMovement));
+        //SceneMessenger.Instance.AddListener(Message.FREE_PLAYER_MOVEMENT, new SceneMessenger.VoidCallback(EnableMovement));
         BoxCollider2D collider = GetComponent<BoxCollider2D>();
         size = collider.size;
+        //movementEnabled = true;
 	}
 	
 	void Update ()
     {
+        /*if (!movementEnabled)
+        {
+            return;
+        }*/
+
         // Get input
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -55,4 +64,14 @@ public class PlayerMovement : MonoBehaviour
     {
         return currentVelocity;
     }
+
+    /*public void FreezeMovement()
+    {
+        movementEnabled = false;
+    }
+
+    public void EnableMovement()
+    {
+        movementEnabled = true;
+    }*/
 }

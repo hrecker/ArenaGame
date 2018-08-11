@@ -8,4 +8,13 @@ public struct Item
 {
     public string name;
     public Sprite sprite;
+    public ItemEffectType type;
+    public int itemEffectQuantity;
+}
+
+public enum ItemEffectType
+{
+    BUFFDAMAGE,
+    HEAL,
+    SPECIAL
 }

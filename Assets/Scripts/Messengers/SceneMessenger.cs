@@ -38,6 +38,12 @@ public class SceneMessenger : MonoBehaviour, IMessenger
                         callback.DynamicInvoke(args[0], args[1]);
                     }
                     break;
+                case Message.PLAYER_HEALTH_GAINED:
+                    foreach (Delegate callback in callbacks[msg])
+                    {
+                        callback.DynamicInvoke(args[0], args[1]);
+                    }
+                    break;
                 case Message.ENEMY_DEFEATED:
                     foreach (Delegate callback in callbacks[msg])
                     {

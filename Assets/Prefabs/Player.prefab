@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
-  maxHealth: 3
+  maxHealth: 5
   invincibilityTimeOnHit: 2
 --- !u!114 &114975009037931752
 MonoBehaviour:
@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b523bb0e169e2f147b73f2952cc26818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponDamage: 1
   bulletPrefab: {fileID: 1323799872595714, guid: 117f509bfd92c9e4c88529ddc9d012bc,
     type: 2}
   minFireInterval: 0.25

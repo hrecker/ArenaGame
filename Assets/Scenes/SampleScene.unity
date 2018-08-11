@@ -354,13 +354,6 @@ MonoBehaviour:
   item2: {fileID: 2060697800}
   item3: {fileID: 2050384180}
   selector: {fileID: 1434188279}
-  itemSprites:
-  - name: heart
-    sprite: {fileID: 21300000, guid: bd3d1406b5d08cd42b85288473fbacdd, type: 3}
-  - name: heart
-    sprite: {fileID: 21300000, guid: bd3d1406b5d08cd42b85288473fbacdd, type: 3}
-  - name: heart
-    sprite: {fileID: 21300000, guid: bd3d1406b5d08cd42b85288473fbacdd, type: 3}
 --- !u!224 &1241415037 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224588909525402612, guid: 91ab9cf48abefcf4b9bd831332e36adf,
@@ -847,6 +840,16 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114717707215703472, guid: 334cbb9343126f74484986ef7a56b061,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114420228483861114, guid: 334cbb9343126f74484986ef7a56b061,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 334cbb9343126f74484986ef7a56b061, type: 2}

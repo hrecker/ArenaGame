@@ -12,7 +12,8 @@ public class PlayerHealthUI : MonoBehaviour
 	{
         sceneMessenger = SceneMessenger.Instance;
         sceneMessenger.AddListener(Message.PLAYER_HEALTH_LOST, new SceneMessenger.HealthChangeCallback(UpdateHearts));
-	}
+        sceneMessenger.AddListener(Message.PLAYER_HEALTH_GAINED, new SceneMessenger.HealthChangeCallback(UpdateHearts));
+    }
 
     void UpdateHearts(int currentHealth, int change)
     {
