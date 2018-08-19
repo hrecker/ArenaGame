@@ -16,12 +16,12 @@ public class PlayerWeaponControl : MonoBehaviour
     void Update ()
     {
         // Control main weapon
+        WeaponBase weapon = GetComponent<WeaponBase>();
         float h = Input.GetAxis("Horizontal2");
         float v = Input.GetAxis("Vertical2");
         Vector2 weaponAxis = new Vector2(h, v);
         if (weaponAxis.magnitude > deadzone)
         {
-            WeaponBase weapon = GetComponent<WeaponBase>();
             weapon.Fire(weaponAxis);
         }
 

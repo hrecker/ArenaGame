@@ -27,7 +27,7 @@ public class SimpleGun : WeaponBase
             StraightConstantMovement bulletMovement = bullet.GetComponent<StraightConstantMovement>();
             bulletMovement.velocity = direction.normalized * bulletSpeed;
             ShotDamageBase damage = bullet.GetComponent<ShotDamageBase>();
-            damage.damage = weaponDamage;
+            damage.damage = baseWeaponDamage;
             timeSinceLastFire = 0;
         }
     }

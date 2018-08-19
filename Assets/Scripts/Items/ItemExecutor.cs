@@ -17,7 +17,7 @@ public class ItemExecutor
         if (item.type == ItemEffectType.BUFFDAMAGE)
         {
             WeaponBase playerWeapon = player.GetComponent<WeaponBase>();
-            playerWeapon.weaponDamage += item.itemEffectQuantity;
+            playerWeapon.baseWeaponDamage += item.itemEffectQuantity;
         }
 
         // TODO other item types
