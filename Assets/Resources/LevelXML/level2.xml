@@ -36,7 +36,7 @@
 	  <SpawnTiming>0.75</SpawnTiming>
 	</EnemySpawn>
     <EnemySpawn>
-      <EnemyType>SQUARE</EnemyType>
+      <EnemyType>KAMIKAZE</EnemyType>
       <SpawnLocation>
 		<X>0</X>
 		<Y>0</Y>
@@ -78,7 +78,7 @@
 	  <SpawnTiming>0.75</SpawnTiming>
 	</EnemySpawn>
     <EnemySpawn>
-      <EnemyType>SQUARE</EnemyType>
+      <EnemyType>KAMIKAZE</EnemyType>
       <SpawnLocation>
 		<X>0</X>
 		<Y>0</Y>
