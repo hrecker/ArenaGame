@@ -1,7 +1,8 @@
 ﻿public enum EnemyType
 {
     SQUARE,
-    KAMIKAZE
+    KAMIKAZE,
+    SHOOTER
 }
 
 // extension methods
@@ -16,6 +17,8 @@ static class EnemyTypeMethods
                 return 10;
             case EnemyType.KAMIKAZE:
                 return 15;
+            case EnemyType.SHOOTER:
+                return 20;
             default:
                 return 0;
         }

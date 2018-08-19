@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerShotDamage : ShotDamageBase
+public class EnemyShotDamage : ShotDamageBase
 {
     public override void OnTriggerEnter2D(Collider2D collider)
     {
-        EnemyHealth enemy = collider.GetComponent<EnemyHealth>();
-        if (enemy != null && hits < maxHitsBeforeDestroyed)
+        if (collider.gameObject.CompareTag("Player") && hits < maxHitsBeforeDestroyed)
         {
             hits++;
-            if (enemy != null)
+            PlayerHealth player = collider.GetComponent<PlayerHealth>();
+            if (player != null)
             {
-                enemy.TakeDamage(damage);
+                player.TakeDamage(damage);
             }
         }
         if (hits >= maxHitsBeforeDestroyed)

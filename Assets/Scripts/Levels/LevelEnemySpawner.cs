@@ -7,6 +7,7 @@ public class LevelEnemySpawner : MonoBehaviour
     // Enemy prefabs to be added in editor
     public GameObject squareEnemy;
     public GameObject kamikazeEnemy;
+    public GameObject shooterEnemy;
 
     private List<Level> levels;
     private int currentLevelIndex;
@@ -103,6 +104,8 @@ public class LevelEnemySpawner : MonoBehaviour
                 return squareEnemy;
             case EnemyType.KAMIKAZE:
                 return kamikazeEnemy;
+            case EnemyType.SHOOTER:
+                return shooterEnemy;
             default:
                 return squareEnemy;
         }

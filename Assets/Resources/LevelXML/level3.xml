@@ -53,5 +53,21 @@
 	  </SpawnLocation>
 	  <SpawnTiming>0</SpawnTiming>
 	</EnemySpawn>
+    <EnemySpawn>
+      <EnemyType>SHOOTER</EnemyType>
+      <SpawnLocation>
+		<X>-5</X>
+		<Y>0</Y>
+	  </SpawnLocation>
+	  <SpawnTiming>0</SpawnTiming>
+	</EnemySpawn>
+    <EnemySpawn>
+      <EnemyType>SHOOTER</EnemyType>
+      <SpawnLocation>
+		<X>5</X>
+		<Y>0</Y>
+	  </SpawnLocation>
+	  <SpawnTiming>0</SpawnTiming>
+	</EnemySpawn>
   </Stage>
 </Level>

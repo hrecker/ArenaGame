@@ -8,7 +8,6 @@ public class SimpleGun : WeaponBase
     public float minFireInterval;
     public float bulletSpeed = 15;
     private float timeSinceLastFire;
-    private PlayerMovement movement;
 
     void Start()
     {
@@ -27,7 +26,7 @@ public class SimpleGun : WeaponBase
             GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
             StraightConstantMovement bulletMovement = bullet.GetComponent<StraightConstantMovement>();
             bulletMovement.velocity = direction.normalized * bulletSpeed;
-            PlayerShotDamage damage = bullet.GetComponent<PlayerShotDamage>();
+            ShotDamageBase damage = bullet.GetComponent<ShotDamageBase>();
             damage.damage = weaponDamage;
             timeSinceLastFire = 0;
         }
