@@ -25,7 +25,6 @@ public class EnemyWeaponControl : MonoBehaviour
             currentFireDelay += Time.deltaTime;
             if (currentFireDelay >= fireDelay)
             {
-                WeaponBase weapon = GetComponent<WeaponBase>();
                 Vector2 direction = player.transform.position - transform.position;
                 weapon.Fire(direction);
                 currentFireDelay = 0;

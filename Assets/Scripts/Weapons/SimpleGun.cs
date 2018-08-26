@@ -12,6 +12,10 @@ public class SimpleGun : WeaponBase
     void Start()
     {
         timeSinceLastFire = minFireInterval;
+        if (gameObject.tag == "Player")
+        {
+            bulletPrefab = Resources.Load<GameObject>("Prefabs/PlayerBullet");
+        }
     }
 
 	void Update () 

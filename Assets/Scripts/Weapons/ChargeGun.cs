@@ -13,6 +13,9 @@ public class ChargeGun : ChargeWeaponBase
     void Start()
     {
         numLevels = 3;
+        bulletLevel1 = Resources.Load<GameObject>("Prefabs/PlayerBullet");
+        bulletLevel2 = Resources.Load<GameObject>("Prefabs/PlayerBulletLevel2");
+        bulletLevel3 = Resources.Load<GameObject>("Prefabs/PlayerBulletLevel3");
     }
 
     public override void Fire(Vector2 direction, float chargeTime)

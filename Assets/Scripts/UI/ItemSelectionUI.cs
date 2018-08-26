@@ -10,7 +10,6 @@ public class ItemSelectionUI : MonoBehaviour
     public Image item2;
     public Image item3;
     public Image selector;
-    private bool moveSelectReady;
     private bool itemsEnabled;
     private int selectedIndex;
     private Item[] currentItems;
@@ -33,13 +32,11 @@ public class ItemSelectionUI : MonoBehaviour
         if (Input.GetButtonDown("BumperLeft") && selectedIndex > 0)
         {
             selector.rectTransform.localPosition += (150 * Vector3.left);
-            moveSelectReady = false;
             selectedIndex--;
         }
         else if (Input.GetButtonDown("BumperRight") && selectedIndex < 2)
         {
             selector.rectTransform.localPosition += (150 * Vector3.right);
-            moveSelectReady = false;
             selectedIndex++;
         }
 
