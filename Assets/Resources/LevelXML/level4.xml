@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Level>
+  <LevelNumber>4</LevelNumber>
+  <CompletionPoints>225</CompletionPoints>
+  <Stage>
+    <EnemySpawn>
+      <EnemyType>OCTOSHOT</EnemyType>
+      <SpawnLocation>
+		<X>0</X>
+		<Y>2</Y>
+	  </SpawnLocation>
+	  <SpawnTiming>0</SpawnTiming>
+	</EnemySpawn>
+  </Stage>
+</Level>

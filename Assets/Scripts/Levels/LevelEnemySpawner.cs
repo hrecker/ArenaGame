@@ -8,6 +8,7 @@ public class LevelEnemySpawner : MonoBehaviour
     public GameObject squareEnemy;
     public GameObject kamikazeEnemy;
     public GameObject shooterEnemy;
+    public GameObject octoshotEnemy;
 
     private List<Level> levels;
     private int currentLevelIndex;
@@ -106,6 +107,8 @@ public class LevelEnemySpawner : MonoBehaviour
                 return kamikazeEnemy;
             case EnemyType.SHOOTER:
                 return shooterEnemy;
+            case EnemyType.OCTOSHOT:
+                return octoshotEnemy;
             default:
                 return squareEnemy;
         }

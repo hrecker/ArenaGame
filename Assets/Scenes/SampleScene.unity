@@ -219,6 +219,8 @@ MonoBehaviour:
     type: 2}
   shooterEnemy: {fileID: 1669480111381688, guid: df3e306cab1aa2a4b9aa54456b72e3f7,
     type: 2}
+  octoshotEnemy: {fileID: 1691656688955232, guid: 915723efca5ac2846b970a72f5a4e173,
+    type: 2}
 --- !u!4 &242998761
 Transform:
   m_ObjectHideFlags: 0
