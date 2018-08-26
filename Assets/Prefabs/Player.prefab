@@ -42,8 +42,11 @@ GameObject:
   - component: {fileID: 114632249991579458}
   - component: {fileID: 114727851484078808}
   - component: {fileID: 114301973769860070}
-  - component: {fileID: 114917848813799344}
   - component: {fileID: 114323836532696766}
+  - component: {fileID: 114565744588555504}
+  - component: {fileID: 114039531497121314}
+  - component: {fileID: 114153581426195484}
+  - component: {fileID: 114005011822576940}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -123,6 +126,51 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
+--- !u!114 &114005011822576940
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1979857794646534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ff0be76d8e4fe49947b0d7cae8b0b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114039531497121314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1979857794646534}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40f6a720e3138a346b8bf5a9746c4ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deadzone: 0.5
+--- !u!114 &114153581426195484
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1979857794646534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b82cb00eb23ca4eb10690bdf09b4e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseWeaponDamage: 1
+  levelChargeTime: 1
+  minFireInterval: 0.25
+  numLevels: 2
+  bulletLevel1: {fileID: 1323799872595714, guid: 117f509bfd92c9e4c88529ddc9d012bc,
+    type: 2}
+  bulletLevel2: {fileID: 1610195594016398, guid: 44fe60ce67b00a2478169399fa1d5ee1,
+    type: 2}
+  bulletLevel3: {fileID: 1096811873252730, guid: 7112e6bb6389b454a99fff2e054d85a6,
+    type: 2}
+  bulletSpeed: 15
 --- !u!114 &114301973769860070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -153,6 +201,22 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 021d550daf620bb46ba96df0726d9dd0, type: 3}
   - {fileID: 21300000, guid: 8c42a900bb501d048a048993d6a8845f, type: 3}
   chargeLevelRenderer: {fileID: 212021524783732244}
+--- !u!114 &114565744588555504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1979857794646534}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b523bb0e169e2f147b73f2952cc26818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseWeaponDamage: 1
+  bulletPrefab: {fileID: 1323799872595714, guid: 117f509bfd92c9e4c88529ddc9d012bc,
+    type: 2}
+  minFireInterval: 0.25
+  bulletSpeed: 15
 --- !u!114 &114622696689441950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -192,28 +256,6 @@ MonoBehaviour:
   health: 3
   maxHealth: 5
   invincibilityTimeOnHit: 2
---- !u!114 &114917848813799344
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1979857794646534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16b82cb00eb23ca4eb10690bdf09b4e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseWeaponDamage: 1
-  levelChargeTime: 1
-  minFireInterval: 0.25
-  numLevels: 3
-  bulletLevel1: {fileID: 1323799872595714, guid: 117f509bfd92c9e4c88529ddc9d012bc,
-    type: 2}
-  bulletLevel2: {fileID: 1610195594016398, guid: 44fe60ce67b00a2478169399fa1d5ee1,
-    type: 2}
-  bulletLevel3: {fileID: 1096811873252730, guid: 7112e6bb6389b454a99fff2e054d85a6,
-    type: 2}
-  bulletSpeed: 15
 --- !u!212 &212021524783732244
 SpriteRenderer:
   m_ObjectHideFlags: 1

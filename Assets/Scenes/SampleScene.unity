@@ -163,6 +163,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114917848813799344, guid: c9319774048885a428bd4366d61e9329,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114323836532696766, guid: c9319774048885a428bd4366d61e9329,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c9319774048885a428bd4366d61e9329, type: 2}
   m_IsPrefabParent: 0
@@ -650,6 +660,39 @@ Transform:
   m_PrefabParentObject: {fileID: 4637128047693268, guid: c9319774048885a428bd4366d61e9329,
     type: 2}
   m_PrefabInternal: {fileID: 237071996}
+--- !u!1 &1601836607 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1979857794646534, guid: c9319774048885a428bd4366d61e9329,
+    type: 2}
+  m_PrefabInternal: {fileID: 237071996}
+--- !u!114 &1601836617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1601836607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b523bb0e169e2f147b73f2952cc26818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseWeaponDamage: 1
+  bulletPrefab: {fileID: 1323799872595714, guid: 117f509bfd92c9e4c88529ddc9d012bc,
+    type: 2}
+  minFireInterval: 0.25
+  bulletSpeed: 15
+--- !u!114 &1601836618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1601836607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40f6a720e3138a346b8bf5a9746c4ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deadzone: 0.5
 --- !u!1 &1650907660
 GameObject:
   m_ObjectHideFlags: 0

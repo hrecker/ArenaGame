@@ -33,7 +33,7 @@ public class Explosion : MonoBehaviour
                 player.TakeDamage(damage);
             }
         }
-        else if (collider.gameObject.CompareTag("EnemyShot")) // enemy hit
+        else // possible enemy hit
         {
             EnemyHealth enemy = collider.GetComponent<EnemyHealth>();
             if (enemy != null)

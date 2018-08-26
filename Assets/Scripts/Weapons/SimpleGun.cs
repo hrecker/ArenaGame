@@ -5,7 +5,7 @@ using UnityEngine;
 public class SimpleGun : WeaponBase 
 {
     public GameObject bulletPrefab;
-    public float minFireInterval;
+    public float minFireInterval = 0.25f;
     public float bulletSpeed = 15;
     private float timeSinceLastFire;
 

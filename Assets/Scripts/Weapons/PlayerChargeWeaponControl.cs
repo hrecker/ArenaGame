@@ -22,7 +22,7 @@ public class PlayerChargeWeaponControl : MonoBehaviour
     {
         timeSinceLastFire += Time.deltaTime;
         // Control main weapon
-        ChargeWeaponBase weapon = GetComponent<ChargeWeaponBase>();
+        ChargeWeaponBase activeWeapon = GetActiveWeapon();
         float h = Input.GetAxis("Horizontal2");
         float v = Input.GetAxis("Vertical2");
         Vector2 weaponAxis = new Vector2(h, v);
@@ -31,13 +31,13 @@ public class PlayerChargeWeaponControl : MonoBehaviour
         {
             currentChargeTime += Time.deltaTime;
             currentlyCharging = true;
-            UpdateChargeLevel(weapon);
+            UpdateChargeLevel(activeWeapon);
         }
         else if (weaponAxis.magnitude > deadzone)
         {
             if (currentlyCharging)
             {
-                weapon.Fire(weaponAxis, currentChargeTime);
+                activeWeapon.Fire(weaponAxis, currentChargeTime);
                 timeSinceLastFire = 0;
             }
             currentChargeTime = 0;
@@ -45,6 +45,19 @@ public class PlayerChargeWeaponControl : MonoBehaviour
             currentlyCharging = false;
             chargeLevelRenderer.enabled = false;
         }
+    }
+
+    private ChargeWeaponBase GetActiveWeapon()
+    {
+        ChargeWeaponBase[] weapons = GetComponents<ChargeWeaponBase>();
+        foreach (ChargeWeaponBase weapon in weapons)
+        {
+            if (weapon.enabled)
+            {
+                return weapon;
+            }
+        }
+        return null;
     }
 
     private void UpdateChargeLevel(ChargeWeaponBase weapon)
