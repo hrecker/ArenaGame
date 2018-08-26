@@ -7,10 +7,15 @@ public class ItemRandomizer
     public static Item[] RandomizeItems(int levelNum)
     {
         Item item1, item2, item3;
-        if (levelNum % 2 == 1)
+        if (levelNum % 3 == 1)
         {
             item1.name = "ChargeGun";
             item1.sprite = LoadItemSprite("ChargeGun");
+        }
+        else if (levelNum % 3 == 2)
+        {
+            item1.name = "GrenadeLauncher";
+            item1.sprite = LoadItemSprite("GrenadeLauncher");
         }
         else
         {

@@ -181,7 +181,7 @@ Prefab:
     - target: {fileID: 114565744588555504, guid: c9319774048885a428bd4366d61e9329,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c9319774048885a428bd4366d61e9329, type: 2}
@@ -672,6 +672,26 @@ Transform:
   m_PrefabParentObject: {fileID: 4637128047693268, guid: c9319774048885a428bd4366d61e9329,
     type: 2}
   m_PrefabInternal: {fileID: 237071996}
+--- !u!1 &1601836607 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1979857794646534, guid: c9319774048885a428bd4366d61e9329,
+    type: 2}
+  m_PrefabInternal: {fileID: 237071996}
+--- !u!114 &1601836620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1601836607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab23f849e91dd694b935f85972c9467c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseWeaponDamage: 1
+  grenadePrefab: {fileID: 0}
+  minFireInterval: 0.75
+  bulletSpeed: 10
 --- !u!1 &1650907660
 GameObject:
   m_ObjectHideFlags: 0
