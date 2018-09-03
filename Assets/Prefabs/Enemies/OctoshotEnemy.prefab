@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114095248812246916}
   - component: {fileID: 114717320390488548}
   - component: {fileID: 114642101976563952}
-  - component: {fileID: 114982819192375440}
+  - component: {fileID: 114805052225209014}
   m_Layer: 0
   m_Name: OctoshotEnemy
   m_TagString: EnemyShot
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
---- !u!114 &114982819192375440
+--- !u!114 &114805052225209014
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -131,14 +131,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1371655668058452}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 333ea66eb5931c64bacc6b810adbf207, type: 3}
+  m_Script: {fileID: 11500000, guid: 80e738595745f864b99220f986ae6699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseWeaponDamage: 1
-  bulletPrefab: {fileID: 1777999340903826, guid: 8a5f91909d2cc1c4193e205c43658d24,
-    type: 2}
-  minFireInterval: 0.25
-  bulletSpeed: 10
+  damageBuffs: 0
+  damageMultiplier: 1
+  shotSpeedMultiplier: 1
+  levelChargeDelayMultiplier: 1
+  fireDelayMultiplier: 1
 --- !u!212 &212795468487576970
 SpriteRenderer:
   m_ObjectHideFlags: 1

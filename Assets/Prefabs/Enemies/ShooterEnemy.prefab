@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114100819023231234}
   - component: {fileID: 114986185087326930}
   - component: {fileID: 114585143725893686}
-  - component: {fileID: 114694505444930128}
+  - component: {fileID: 114773715076592554}
   m_Layer: 0
   m_Name: ShooterEnemy
   m_TagString: EnemyShot
@@ -115,9 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe28d5ac4d981cf4fa9dfffe98f7ed7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireDelay: 1
   player: {fileID: 0}
---- !u!114 &114694505444930128
+--- !u!114 &114773715076592554
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -125,14 +124,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1714525335654920}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b523bb0e169e2f147b73f2952cc26818, type: 3}
+  m_Script: {fileID: 11500000, guid: 80e738595745f864b99220f986ae6699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseWeaponDamage: 1
-  bulletPrefab: {fileID: 1777999340903826, guid: 8a5f91909d2cc1c4193e205c43658d24,
-    type: 2}
-  minFireInterval: 0
-  bulletSpeed: 15
+  damageBuffs: 0
+  damageMultiplier: 1
+  shotSpeedMultiplier: 1
+  levelChargeDelayMultiplier: 1
+  fireDelayMultiplier: 1
 --- !u!114 &114948382262851508
 MonoBehaviour:
   m_ObjectHideFlags: 1

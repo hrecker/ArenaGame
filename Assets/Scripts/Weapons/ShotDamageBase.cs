@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class ShotDamageBase : MonoBehaviour 
 {
-    public int damage = 1;
+    public float damage = 1;
     public int maxHitsBeforeDestroyed = 1;
     protected int hits;
 

@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class EnemyWeaponControl : MonoBehaviour
 {
-    public float fireDelay = 0.5f;
     private float currentFireDelay;
     public GameObject player;
     private WeaponBase weapon;
+    private WeaponMods mods;
 
     private void Start()
     {
+        mods = GetComponent<WeaponMods>();
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
-        weapon = GetComponent<WeaponBase>();   
+        weapon = new SimpleGun(mods, false);
+        weapon.minFireInterval = 0.5f;
     }
 
     void Update()
@@ -23,10 +25,10 @@ public class EnemyWeaponControl : MonoBehaviour
         if (player != null)
         {
             currentFireDelay += Time.deltaTime;
-            if (currentFireDelay >= fireDelay)
+            if (currentFireDelay >= weapon.minFireInterval)
             {
                 Vector2 direction = player.transform.position - transform.position;
-                weapon.Fire(direction);
+                weapon.Fire(currentFireDelay, direction, transform);
                 currentFireDelay = 0;
             }
         }

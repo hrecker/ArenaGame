@@ -6,38 +6,35 @@ using UnityEngine;
 public class GrenadeLauncher : WeaponBase
 {
     public GameObject grenadePrefab;
-    public float minFireInterval = 0.75f;
     public float bulletSpeed = 10;
-    private float timeSinceLastFire;
-    private bool playerOwned;
+    private bool isPlayerOwned;
 
-    void Start()
+    public GrenadeLauncher(WeaponMods weaponMods, bool isPlayerControlled)
     {
+        minFireInterval = 0.75f;
         baseWeaponDamage = 2;
-        timeSinceLastFire = minFireInterval;
-        playerOwned = gameObject.tag == "Player";
-        if (playerOwned)
+        mods = weaponMods;
+        isPlayerOwned = isPlayerControlled;
+        if (isPlayerOwned)
         {
             grenadePrefab = Resources.Load<GameObject>("Prefabs/Grenade");
         }
-    }
-
-    void Update()
-    {
-        timeSinceLastFire += Time.deltaTime;
-    }
-
-    public override void Fire(Vector2 direction)
-    {
-        if (timeSinceLastFire >= minFireInterval)
+        else
         {
-            GameObject grenade = Instantiate(grenadePrefab, transform.position, transform.rotation);
-            StraightConstantMovement grenadeMovement = grenade.GetComponent<StraightConstantMovement>();
-            grenadeMovement.velocity = direction.normalized * bulletSpeed;
-            Grenade grenadeScript = grenade.GetComponent<Grenade>();
-            grenadeScript.playerOwned = playerOwned;
-            grenadeScript.damage = baseWeaponDamage;
-            timeSinceLastFire = 0;
+            //TODO enemy grenades?
         }
+    }
+
+    public override bool Fire (float timeSinceLastFire, Vector2 direction, Transform currentTransform)
+    {
+        GameObject grenade = mods.FireSimpleProjectile(grenadePrefab, direction, currentTransform,
+            timeSinceLastFire, minFireInterval, baseWeaponDamage, bulletSpeed);
+        if (grenade != null)
+        {
+            Grenade grenadeScript = grenade.GetComponent<Grenade>();
+            grenadeScript.playerOwned = isPlayerOwned;
+            return true;
+        }
+        return false;
     }
 }

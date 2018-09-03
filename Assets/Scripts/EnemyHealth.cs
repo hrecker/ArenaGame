@@ -14,22 +14,24 @@ public class EnemyHealth : MonoBehaviour
         messenger = this.GetMessenger();
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
-        health -= damage;
+        int intDamage = (int) damage;
+
+        health -= intDamage;
         if (health < 0)
         {
             health = 0;
         }
 
         // Send message to any other enemy scripts
-        if (damage > 0)
+        if (intDamage > 0)
         {
-            messenger.Invoke(Message.HEALTH_LOST, new object[] { health, damage });
+            messenger.Invoke(Message.HEALTH_LOST, new object[] { health, intDamage });
         }
         if (health == 0)
         {
-            messenger.Invoke(Message.NO_HEALTH_REMAINING, new object[] { damage });
+            messenger.Invoke(Message.NO_HEALTH_REMAINING, new object[] { intDamage });
         }
     }
 }

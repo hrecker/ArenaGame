@@ -5,47 +5,39 @@ using UnityEngine;
 public class OctoShot : WeaponBase
 {
     public GameObject bulletPrefab;
-    public float minFireInterval = 0.25f;
     public float bulletSpeed = 10;
-    private float timeSinceLastFire;
 
-    void Start()
+    public OctoShot(WeaponMods weaponMods, bool isPlayerControlled)
     {
-        timeSinceLastFire = minFireInterval;
-        if (gameObject.tag == "Player")
+        minFireInterval = 0.25f;
+        mods = weaponMods;
+        if (isPlayerControlled)
         {
             bulletPrefab = Resources.Load<GameObject>("Prefabs/PlayerBullet");
         }
-    }
-
-    void Update()
-    {
-        timeSinceLastFire += Time.deltaTime;
-    }
-
-    // Fire in 8 directions
-    public override void Fire(Vector2 direction)
-    {
-        if (timeSinceLastFire >= minFireInterval)
+        else
         {
-            FireSingleBullet(Vector2.up);
-            FireSingleBullet(Vector2.up + Vector2.right);
-            FireSingleBullet(Vector2.right);
-            FireSingleBullet(Vector2.down + Vector2.right);
-            FireSingleBullet(Vector2.down);
-            FireSingleBullet(Vector2.down + Vector2.left);
-            FireSingleBullet(Vector2.left);
-            FireSingleBullet(Vector2.up + Vector2.left);
-            timeSinceLastFire = 0;
+            //TODO put this prefab in
+            bulletPrefab = Resources.Load<GameObject>("Prefabs/EnemyBullet");
         }
     }
 
-    private void FireSingleBullet(Vector2 direction)
+    // Fire in 8 directions
+    public override bool Fire(float timeSinceLastFire, Vector2 direction, Transform currentTransform)
     {
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-        StraightConstantMovement bulletMovement = bullet.GetComponent<StraightConstantMovement>();
-        bulletMovement.velocity = direction.normalized * bulletSpeed;
-        ShotDamageBase damage = bullet.GetComponent<ShotDamageBase>();
-        damage.damage = baseWeaponDamage;
+        return FireSingleBullet(timeSinceLastFire, Vector2.up, currentTransform) &&
+            FireSingleBullet(timeSinceLastFire, Vector2.up + Vector2.right, currentTransform) &&
+            FireSingleBullet(timeSinceLastFire, Vector2.right, currentTransform) &&
+            FireSingleBullet(timeSinceLastFire, Vector2.down + Vector2.right, currentTransform) &&
+            FireSingleBullet(timeSinceLastFire, Vector2.down, currentTransform) &&
+            FireSingleBullet(timeSinceLastFire, Vector2.down + Vector2.left, currentTransform) &&
+            FireSingleBullet(timeSinceLastFire, Vector2.left, currentTransform) &&
+            FireSingleBullet(timeSinceLastFire, Vector2.up + Vector2.left, currentTransform);
+    }
+
+    private bool FireSingleBullet(float timeSinceLastFire, Vector2 direction, Transform currentTransform)
+    {
+        return mods.FireSimpleProjectile(bulletPrefab, direction, currentTransform,
+            timeSinceLastFire, minFireInterval, baseWeaponDamage, bulletSpeed) != null;
     }
 }

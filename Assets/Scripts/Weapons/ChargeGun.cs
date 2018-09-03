@@ -8,43 +8,30 @@ public class ChargeGun : ChargeWeaponBase
     public GameObject bulletLevel1;
     public GameObject bulletLevel2;
     public GameObject bulletLevel3;
+    private GameObject[] allBullets;
     public float bulletSpeed = 15;
-
-    void Start()
+    
+    public ChargeGun (WeaponMods weaponMods, bool isPlayerControlled)
     {
+        minFireInterval = 0;
+        mods = weaponMods;
         numLevels = 3;
         bulletLevel1 = Resources.Load<GameObject>("Prefabs/PlayerBullet");
         bulletLevel2 = Resources.Load<GameObject>("Prefabs/PlayerBulletLevel2");
         bulletLevel3 = Resources.Load<GameObject>("Prefabs/PlayerBulletLevel3");
+        allBullets = new GameObject[] { bulletLevel1, bulletLevel2, bulletLevel3 };
     }
 
-    public override void Fire(Vector2 direction, float chargeTime)
+    public override bool Fire(float timeSinceLastFire, Vector2 direction, Transform transform, float chargeTime)
     {
-        if (chargeTime >= 2 * levelChargeTime) // fire level 3 bullet
-        {
-            Fire(direction, bulletLevel3, baseWeaponDamage + 2);
-        }
-        else if (chargeTime >= levelChargeTime) // fire level 2 bullet
-        {
-            Fire(direction, bulletLevel2, baseWeaponDamage + 1);
-        }
-        else // fire basic bullet
-        {
-            Fire(direction, bulletLevel1, baseWeaponDamage);
-        }
+        return mods.FireChargedSimpleProjectile(allBullets, direction, transform, 
+            timeSinceLastFire, minFireInterval, 
+            levelChargeTime, chargeTime,
+            bulletSpeed) != null;
     }
 
-    public override void Fire(Vector2 direction)
+    public override bool Fire(float timeSinceLastFire, Vector2 direction, Transform transform)
     {
-        Fire(direction, 0);
-    }
-
-    private void Fire(Vector2 direction, GameObject bulletPrefab, int bulletDamage)
-    {
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-        StraightConstantMovement bulletMovement = bullet.GetComponent<StraightConstantMovement>();
-        bulletMovement.velocity = direction.normalized * bulletSpeed;
-        ShotDamageBase damage = bullet.GetComponent<ShotDamageBase>();
-        damage.damage = bulletDamage;
+        return Fire(timeSinceLastFire, direction, transform, 0);
     }
 }

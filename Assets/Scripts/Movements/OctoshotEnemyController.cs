@@ -17,15 +17,17 @@ public class OctoshotEnemyController : MonoBehaviour
     public float stopTime = 2.0f;
     private bool moving;
     private float currentStageTime;
+    private WeaponMods mods;
     private WeaponBase weapon;
 
     void Start()
     {
+        mods = GetComponent<WeaponMods>();
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
-        weapon = GetComponent<WeaponBase>();
+        weapon = new OctoShot(mods, false);
         CircleCollider2D collider = GetComponent<CircleCollider2D>();
         size = new Vector2(collider.radius, collider.radius);
         moving = true;
@@ -65,7 +67,9 @@ public class OctoshotEnemyController : MonoBehaviour
                 {
                     currentStageTime = 0;
                     moving = true;
-                    weapon.Fire(Vector2.zero); // direction doesn't matter
+                    // fire interval and direction don't matter
+                    //TODO this could be bad...
+                    weapon.Fire(weapon.minFireInterval + 1, Vector2.zero, transform);
                 }
             }
         }

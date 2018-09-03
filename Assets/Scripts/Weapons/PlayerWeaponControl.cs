@@ -6,30 +6,35 @@ public class PlayerWeaponControl : MonoBehaviour
 {
     [Range(0, 1.0f)]
     public float deadzone = 0.5f;
+    private float timeSinceLastFire;
+    private WeaponBase weapon;
+    private WeaponMods weaponMods;
+
+    void OnEnable()
+    {
+        weaponMods = GetComponent<WeaponMods>();
+        if (weapon == null)
+        {
+            weapon = WeaponType.GetWeapon(weaponMods, "SimpleGun", true);
+        }
+        timeSinceLastFire = weapon.minFireInterval;
+    }
 
     void Update ()
     {
+        timeSinceLastFire += Time.deltaTime;
         // Control main weapon
-        WeaponBase activeWeapon = GetActiveWeapon();
         float h = Input.GetAxis("Horizontal2");
         float v = Input.GetAxis("Vertical2");
         Vector2 weaponAxis = new Vector2(h, v);
-        if (weaponAxis.magnitude > deadzone)
+        if (weaponAxis.magnitude > deadzone && weapon.Fire(timeSinceLastFire, weaponAxis, transform))
         {
-            activeWeapon.Fire(weaponAxis);
+            timeSinceLastFire = 0;
         }
     }
 
-    private WeaponBase GetActiveWeapon()
+    public void SetWeapon(string newWeaponName)
     {
-        WeaponBase[] weapons = GetComponents<WeaponBase>();
-        foreach (WeaponBase weapon in weapons)
-        {
-            if (weapon.enabled)
-            {
-                return weapon;
-            }
-        }
-        return null;
+        weapon = WeaponType.GetWeapon(weaponMods, newWeaponName, true);
     }
 }

@@ -1,10 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public abstract class WeaponBase : MonoBehaviour 
+public abstract class WeaponBase 
 {
     public int baseWeaponDamage = 1;
+    public float minFireInterval = 0.25f;
 
-    public abstract void Fire(Vector2 direction);
+    protected WeaponMods mods;
+
+    // return true if fired
+    public abstract bool Fire(float timeSinceLastFire, Vector2 direction, Transform currentTransform);
 }

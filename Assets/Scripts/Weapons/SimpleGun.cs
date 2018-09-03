@@ -5,34 +5,25 @@ using UnityEngine;
 public class SimpleGun : WeaponBase 
 {
     public GameObject bulletPrefab;
-    public float minFireInterval = 0.25f;
     public float bulletSpeed = 15;
-    private float timeSinceLastFire;
 
-    void Start()
+    public SimpleGun (WeaponMods weaponMods, bool isPlayerControlled)
     {
-        timeSinceLastFire = minFireInterval;
-        if (gameObject.tag == "Player")
+        minFireInterval = 0.25f;
+        mods = weaponMods;
+        if (isPlayerControlled)
         {
             bulletPrefab = Resources.Load<GameObject>("Prefabs/PlayerBullet");
         }
+        else
+        {
+            bulletPrefab = Resources.Load<GameObject>("Prefabs/EnemyBullet");
+        }
     }
 
-	void Update () 
-	{
-        timeSinceLastFire += Time.deltaTime;
-	}
-
-    public override void Fire (Vector2 direction)
+    public override bool Fire (float timeSinceLastFire, Vector2 direction, Transform transform)
     {
-        if (timeSinceLastFire >= minFireInterval)
-        {
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-            StraightConstantMovement bulletMovement = bullet.GetComponent<StraightConstantMovement>();
-            bulletMovement.velocity = direction.normalized * bulletSpeed;
-            ShotDamageBase damage = bullet.GetComponent<ShotDamageBase>();
-            damage.damage = baseWeaponDamage;
-            timeSinceLastFire = 0;
-        }
+        return mods.FireSimpleProjectile(bulletPrefab, direction, transform,
+            timeSinceLastFire, minFireInterval, baseWeaponDamage, bulletSpeed) != null;
     }
 }

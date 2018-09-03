@@ -57,7 +57,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         if (!invincible)
         {
@@ -66,26 +66,28 @@ public class PlayerHealth : MonoBehaviour
     }
 
     // Take damage regardless of invincibility
-    public void TakeDirectDamage(int damage)
+    public void TakeDirectDamage(float damage)
     {
-        health -= damage;
+        int intDamage = (int) damage;
+
+        health -= intDamage;
         if (health < 0)
         {
             health = 0;
         }
 
-        if (damage > 0)
+        if (intDamage > 0)
         {
             invincible = true;
             invincibilityRemaining = invincibilityTimeOnHit;
             invincibilityFlashRemaining = invincibilityFlashSpeed;
             spriteRenderer.enabled = false;
             // Send message to any other player scripts
-            messenger.Invoke(Message.HEALTH_LOST, new object[] { health, -damage });
+            messenger.Invoke(Message.HEALTH_LOST, new object[] { health, -intDamage });
         }
         if (health == 0)
         {
-            messenger.Invoke(Message.NO_HEALTH_REMAINING, new object[] { damage });
+            messenger.Invoke(Message.NO_HEALTH_REMAINING, new object[] { intDamage });
         }
     }
 

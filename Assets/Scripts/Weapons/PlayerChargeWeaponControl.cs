@@ -12,17 +12,24 @@ public class PlayerChargeWeaponControl : MonoBehaviour
     private bool currentlyCharging;
     private int currentChargeLevel;
     private float timeSinceLastFire;
+    private ChargeWeaponBase weapon;
+    private WeaponMods weaponMods;
 
-    private void Start()
+    void OnEnable()
     {
+        weaponMods = GetComponent<WeaponMods>();
+        if (weapon == null)
+        {
+            weapon = (ChargeWeaponBase) WeaponType.GetWeapon(weaponMods, "ChargeGun", true);
+        }
         currentChargeLevel = 0;
+        timeSinceLastFire = weapon.minFireInterval;
     }
 
     void Update()
     {
         timeSinceLastFire += Time.deltaTime;
         // Control main weapon
-        ChargeWeaponBase activeWeapon = GetActiveWeapon();
         float h = Input.GetAxis("Horizontal2");
         float v = Input.GetAxis("Vertical2");
         Vector2 weaponAxis = new Vector2(h, v);
@@ -31,13 +38,12 @@ public class PlayerChargeWeaponControl : MonoBehaviour
         {
             currentChargeTime += Time.deltaTime;
             currentlyCharging = true;
-            UpdateChargeLevel(activeWeapon);
+            UpdateChargeLevel();
         }
         else if (weaponAxis.magnitude > deadzone)
         {
-            if (currentlyCharging)
+            if (currentlyCharging && weapon.Fire(timeSinceLastFire, weaponAxis, transform, currentChargeTime))
             {
-                activeWeapon.Fire(weaponAxis, currentChargeTime);
                 timeSinceLastFire = 0;
             }
             currentChargeTime = 0;
@@ -47,28 +53,15 @@ public class PlayerChargeWeaponControl : MonoBehaviour
         }
     }
 
-    private ChargeWeaponBase GetActiveWeapon()
+    private void UpdateChargeLevel()
     {
-        ChargeWeaponBase[] weapons = GetComponents<ChargeWeaponBase>();
-        foreach (ChargeWeaponBase weapon in weapons)
-        {
-            if (weapon.enabled)
-            {
-                return weapon;
-            }
-        }
-        return null;
+        currentChargeLevel = weaponMods.GetChargeLevel(weapon.levelChargeTime, currentChargeTime, weapon.numLevels);
+        chargeLevelRenderer.sprite = chargeLevelSprites[currentChargeLevel - 1];
+        chargeLevelRenderer.enabled = true;
     }
 
-    private void UpdateChargeLevel(ChargeWeaponBase weapon)
+    public void SetWeapon(string newWeaponName)
     {
-        // Move up a charge level
-        if (currentChargeLevel < weapon.numLevels && currentChargeTime >= (currentChargeLevel * weapon.levelChargeTime))
-        {
-            currentChargeLevel++;
-            // update sprite
-            chargeLevelRenderer.sprite = chargeLevelSprites[currentChargeLevel - 1];
-            chargeLevelRenderer.enabled = true;
-        }
+        weapon = (ChargeWeaponBase) WeaponType.GetWeapon(weaponMods, newWeaponName, true);
     }
 }

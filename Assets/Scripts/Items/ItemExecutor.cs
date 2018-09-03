@@ -17,11 +17,8 @@ public class ItemExecutor
 
         if (item.type == ItemEffectType.BUFFDAMAGE)
         {
-            WeaponBase[] playerWeapons = player.GetComponents<WeaponBase>();
-            foreach (WeaponBase playerWeapon in playerWeapons)
-            {
-                playerWeapon.baseWeaponDamage += item.itemEffectQuantity;
-            }
+            WeaponMods mods = player.GetComponent<WeaponMods>();
+            mods.damageBuffs += 1;
         }
 
         if (item.type == ItemEffectType.WEAPON)
@@ -29,26 +26,20 @@ public class ItemExecutor
             PlayerChargeWeaponControl chargeControl = player.GetComponent<PlayerChargeWeaponControl>();
             PlayerWeaponControl weaponControl = player.GetComponent<PlayerWeaponControl>();
 
-            // destroy current weapon
-            WeaponBase[] currentWeapons = player.GetComponents<WeaponBase>();
-            foreach (WeaponBase weapon in currentWeapons)
-            {
-                UnityEngine.Object.Destroy(weapon);
-            }
-
             // add new weapon
             Type weaponType = WeaponParser.GetWeaponScriptFromName(item.name);
             if (weaponType.IsSubclassOf(typeof(ChargeWeaponBase))) // charge based weapon
             {
                 chargeControl.enabled = true;
                 weaponControl.enabled = false;
+                chargeControl.SetWeapon(item.name);
             }
             else // normal weapon
             {
                 chargeControl.enabled = false;
                 weaponControl.enabled = true;
+                weaponControl.SetWeapon(item.name);
             }
-            player.AddComponent(weaponType);
         }
 
         // TODO other item types
