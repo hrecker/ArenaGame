@@ -27,9 +27,17 @@ public class PlayerWeaponControl : MonoBehaviour
         float h = Input.GetAxis("Horizontal2");
         float v = Input.GetAxis("Vertical2");
         Vector2 weaponAxis = new Vector2(h, v);
-        if (weaponAxis.magnitude > deadzone && weapon.Fire(timeSinceLastFire, weaponAxis, transform))
+        if (weaponAxis.magnitude > deadzone)
         {
-            timeSinceLastFire = 0;
+            weapon.SetFireHeld(true);
+            if (weapon.Fire(timeSinceLastFire, weaponAxis, transform))
+            {
+                timeSinceLastFire = 0;
+            }
+        }
+        else
+        {
+            weapon.SetFireHeld(false);
         }
     }
 

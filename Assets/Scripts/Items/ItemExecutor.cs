@@ -62,6 +62,10 @@ class WeaponParser
         {
             return typeof(GrenadeLauncher);
         }
+        else if (name == "MiniGun")
+        {
+            return typeof(MiniGun);
+        }
         else // Default to simplegun
         {
             return typeof(SimpleGun);

@@ -11,6 +11,8 @@
             case "GrenadeLauncher":
                 return CreateGrenadeLauncher(mods, isPlayerControlled);
             // default to simple gun
+            case "MiniGun":
+                return CreateMiniGun(mods, isPlayerControlled);
             default:
                 return CreateSimpleGun(mods, isPlayerControlled);
         }
@@ -29,5 +31,10 @@
     private static WeaponBase CreateGrenadeLauncher(WeaponMods mods, bool isPlayerControlled)
     {
         return new GrenadeLauncher(mods, isPlayerControlled);
+    }
+
+    private static WeaponBase CreateMiniGun(WeaponMods mods, bool isPlayerControlled)
+    {
+        return new MiniGun(mods, isPlayerControlled);
     }
 }

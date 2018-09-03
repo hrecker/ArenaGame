@@ -7,6 +7,13 @@ public abstract class WeaponBase
 
     protected WeaponMods mods;
 
+    protected bool fireHeld;
+
     // return true if fired
     public abstract bool Fire(float timeSinceLastFire, Vector2 direction, Transform currentTransform);
+
+    public virtual void SetFireHeld(bool fireHeld)
+    {
+        this.fireHeld = fireHeld;
+    }
 }
