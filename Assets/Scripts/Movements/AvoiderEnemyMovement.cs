@@ -11,7 +11,7 @@ public class AvoiderEnemyMovement : MonoBehaviour
     [Range(0, 1.0f)]
     public float movementRandomization = 0.1f;
     private Vector2 currentVelocity = Vector2.zero;
-    private Vector2 size = Vector2.zero;
+    private Collider2D movementCollider;
 
     void Start()
     {
@@ -19,8 +19,7 @@ public class AvoiderEnemyMovement : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
-        BoxCollider2D collider = GetComponent<BoxCollider2D>();
-        size = collider.size;
+        movementCollider = GetComponent<Collider2D>();
     }
 
     void Update()
@@ -42,7 +41,7 @@ public class AvoiderEnemyMovement : MonoBehaviour
                     currentVelocity = currentVelocity.normalized * maxSpeed;
                 }
 
-                currentVelocity = MovementUtilities.Box2DPreResolveObstacles(currentVelocity, transform.position, size);
+                currentVelocity = MovementUtilities.ResolveObstacles(movementCollider, currentVelocity, transform.position);
                 transform.Translate(currentVelocity * Time.deltaTime);
             }
         }

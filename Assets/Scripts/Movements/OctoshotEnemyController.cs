@@ -11,7 +11,6 @@ public class OctoshotEnemyController : MonoBehaviour
     [Range(0, 1.0f)]
     public float movementRandomization = 0.25f;
     private Vector2 currentVelocity = Vector2.zero;
-    private Vector2 size = Vector2.zero;
 
     public float movementTime = 2.5f;
     public float stopTime = 2.0f;
@@ -19,6 +18,7 @@ public class OctoshotEnemyController : MonoBehaviour
     private float currentStageTime;
     private WeaponMods mods;
     private WeaponBase weapon;
+    private Collider2D movementCollider;
 
     void Start()
     {
@@ -28,8 +28,7 @@ public class OctoshotEnemyController : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player");
         }
         weapon = new OctoShot(mods, false);
-        CircleCollider2D collider = GetComponent<CircleCollider2D>();
-        size = new Vector2(collider.radius, collider.radius);
+        movementCollider = GetComponent<CircleCollider2D>();
         moving = true;
     }
 
@@ -52,7 +51,7 @@ public class OctoshotEnemyController : MonoBehaviour
                     currentVelocity = currentVelocity.normalized * maxSpeed;
                 }
 
-                currentVelocity = MovementUtilities.Box2DPreResolveObstacles(currentVelocity, transform.position, size);
+                currentVelocity = MovementUtilities.ResolveObstacles(movementCollider, currentVelocity, transform.position);
                 transform.Translate(currentVelocity * Time.deltaTime);
 
                 if (currentStageTime >= movementTime)

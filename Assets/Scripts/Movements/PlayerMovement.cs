@@ -8,15 +8,14 @@ public class PlayerMovement : MonoBehaviour
     public float maxDrag = 100f;
     public float maxVelocity = 10.0f;
     Vector2 currentVelocity = Vector2.zero;
-    Vector2 size = Vector2.zero;
     private bool movementEnabled;
+    private Collider2D movementCollider;
 
-	void Start ()
+    void Start ()
     {
         //SceneMessenger.Instance.AddListener(Message.STOP_PLAYER_MOVEMENT, new SceneMessenger.VoidCallback(FreezeMovement));
         //SceneMessenger.Instance.AddListener(Message.FREE_PLAYER_MOVEMENT, new SceneMessenger.VoidCallback(EnableMovement));
-        BoxCollider2D collider = GetComponent<BoxCollider2D>();
-        size = collider.size;
+        movementCollider = GetComponent<Collider2D>();
         //movementEnabled = true;
 	}
 	
@@ -55,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Check for walls and obstacles
-        currentVelocity = MovementUtilities.Box2DPreResolveObstacles(currentVelocity, transform.position, size);
+        currentVelocity = MovementUtilities.ResolveObstacles(movementCollider, currentVelocity, transform.position);
         // Move
         transform.Translate(currentVelocity * Time.deltaTime);
     }
