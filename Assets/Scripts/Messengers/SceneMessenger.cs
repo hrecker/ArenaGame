@@ -6,11 +6,13 @@ public class SceneMessenger : MonoBehaviour, IMessenger
 {
     public static SceneMessenger Instance { get; private set; }
     private Dictionary<Message, List<Delegate>> callbacks;
+    private Dictionary<Message, List<Delegate>> genericCallbacks;
 
     public delegate void HealthChangeCallback(int currentHealth, int change);
     public delegate void EnemyCallback(EnemyType type);
     public delegate void LevelCallback(Level level, bool isLastLevel);
     public delegate void VoidCallback();
+    public delegate void GenericCallback(Message message);
 
     void Awake()
     {
@@ -23,6 +25,11 @@ public class SceneMessenger : MonoBehaviour, IMessenger
         if (callbacks == null)
         {
             callbacks = new Dictionary<Message, List<Delegate>>();
+        }
+
+        if (genericCallbacks == null)
+        {
+            genericCallbacks = new Dictionary<Message, List<Delegate>>();
         }
     }
 
@@ -64,6 +71,14 @@ public class SceneMessenger : MonoBehaviour, IMessenger
                     break;
             }
         }
+
+        if (genericCallbacks.ContainsKey(msg))
+        {
+            foreach (Delegate callback in genericCallbacks[msg])
+            {
+                callback.DynamicInvoke(msg);
+            }
+        }
     }
 
     public void AddListener(Message msg, Delegate callback)
@@ -77,5 +92,21 @@ public class SceneMessenger : MonoBehaviour, IMessenger
             callbacks.Add(msg, new List<Delegate>());
         }
         callbacks[msg].Add(callback);
+    }
+
+    public void AddGenericListener(Delegate callback)
+    {
+        if (genericCallbacks == null)
+        {
+            genericCallbacks = new Dictionary<Message, List<Delegate>>();
+        }
+        foreach (Message msg in Enum.GetValues(typeof(Message)))
+        {
+            if (!genericCallbacks.ContainsKey(msg))
+            {
+                genericCallbacks.Add(msg, new List<Delegate>());
+            }
+            genericCallbacks[msg].Add(callback);
+        }
     }
 }
