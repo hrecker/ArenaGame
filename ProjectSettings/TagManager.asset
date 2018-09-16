@@ -6,6 +6,9 @@ TagManager:
   tags:
   - PlayerShot
   - EnemyShot
+  - PlayerBlocker
+  - Blocker
+  - EnemyBlocker
   layers:
   - Default
   - TransparentFX

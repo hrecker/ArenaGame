@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class ShotDamageBase : MonoBehaviour 
 {
+    public bool destroyOnBlockerHit = true;
+
     public float damage = 1;
     // If max hits before destroyed is 0, this shot can hit any number of times and will not be destroyed
     public int maxHitsBeforeDestroyed = 1;
