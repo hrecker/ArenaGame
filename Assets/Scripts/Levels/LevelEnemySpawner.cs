@@ -10,6 +10,11 @@ public class LevelEnemySpawner : MonoBehaviour
     public GameObject shooterEnemy;
     public GameObject octoshotEnemy;
 
+    public ArenaLocator arenaLocator;
+    private Vector2 baseArenaSpawnLocation;
+
+    public GameObject player;
+
     private List<Level> levels;
     private int currentLevelIndex;
     private float currentStageTimePassed;
@@ -19,17 +24,23 @@ public class LevelEnemySpawner : MonoBehaviour
     private const float enemyZLevel = 1;
     private bool allLevelsComplete;
     private bool levelActive;
+    private string currentArena = "";
     
 	void Start () 
 	{
         SceneMessenger.Instance.AddListener(Message.ENEMY_DEFEATED, new SceneMessenger.EnemyCallback(EnemyDefeated));
         SceneMessenger.Instance.AddListener(Message.LEVEL_STARTED, new SceneMessenger.VoidCallback(StartNextLevel));
+        SceneMessenger.Instance.AddListener(Message.READY_TO_START_LEVEL, new SceneMessenger.VoidCallback(MoveToArena));
         levels = LevelLoader.LoadAllLevels();
         currentLevelIndex = -1;
         allLevelsComplete = false;
         levelActive = false;
-        //StartNextLevel();
-	}
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+        currentArena = levels[0].ArenaName;
+    }
 
     public void StartNextLevel()
     {
@@ -44,6 +55,18 @@ public class LevelEnemySpawner : MonoBehaviour
         {
             // TODO logic for completing all levels
             allLevelsComplete = true;
+        }
+    }
+
+    public void MoveToArena()
+    {
+        string nextArena = levels[currentLevelIndex + 1].ArenaName;
+        if (nextArena != currentArena)
+        {
+            baseArenaSpawnLocation = arenaLocator.GetArenaSpawnLocation(nextArena);
+            player.transform.position = new Vector3(baseArenaSpawnLocation.x, baseArenaSpawnLocation.y,
+                player.transform.position.z);
+            currentArena = nextArena;
         }
     }
 
@@ -72,7 +95,7 @@ public class LevelEnemySpawner : MonoBehaviour
             {
                 if (currentStage.SpawnTimings[i] <= currentStageTimePassed)
                 {
-                    SpawnEnemy(currentStage.Enemies[i], currentStage.SpawnLocations[i]);
+                    SpawnEnemy(currentStage.Enemies[i], currentStage.SpawnLocations[i] + baseArenaSpawnLocation);
                     currentStageEnemyNumber++;
                 }
                 else

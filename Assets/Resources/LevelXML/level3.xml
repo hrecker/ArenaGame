@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Level>
   <LevelNumber>3</LevelNumber>
+  <Arena>SmallRectangular</Arena>
   <CompletionPoints>200</CompletionPoints>
   <Stage>
     <EnemySpawn>

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Level 
 {
+    public string ArenaName { get; set; }
     public List<LevelStage> Stages { get; set; }
     public int CompletionPoints { get; set; }
     public int LevelNumber { get; set; }

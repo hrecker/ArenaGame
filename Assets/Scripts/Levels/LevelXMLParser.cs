@@ -20,6 +20,7 @@ public class LevelXMLParser
     private static Level ParseLevel(XElement root)
     {
         Level level = new Level();
+        level.ArenaName = root.Element("Arena").Value;
         level.CompletionPoints = int.Parse(root.Element("CompletionPoints").Value);
         level.LevelNumber = int.Parse(root.Element("LevelNumber").Value);
         level.Stages = new List<LevelStage>();
