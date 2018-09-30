@@ -15,7 +15,7 @@ public class PlayerWeaponControl : MonoBehaviour
         weaponMods = GetComponent<WeaponMods>();
         if (weapon == null)
         {
-            weapon = WeaponType.GetWeapon(weaponMods, "MiniGun", true);
+            weapon = WeaponType.GetWeapon(weaponMods, "SimpleGun", true);
         }
         timeSinceLastFire = weapon.minFireInterval;
     }
