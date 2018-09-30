@@ -9,6 +9,7 @@ public class LevelEnemySpawner : MonoBehaviour
     public GameObject kamikazeEnemy;
     public GameObject shooterEnemy;
     public GameObject octoshotEnemy;
+    public GameObject dashEnemy;
 
     public ArenaLocator arenaLocator;
     private Vector2 baseArenaSpawnLocation;
@@ -132,6 +133,8 @@ public class LevelEnemySpawner : MonoBehaviour
                 return shooterEnemy;
             case EnemyType.OCTOSHOT:
                 return octoshotEnemy;
+            case EnemyType.DASH:
+                return dashEnemy;
             default:
                 return squareEnemy;
         }

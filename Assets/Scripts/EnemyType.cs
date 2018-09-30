@@ -3,7 +3,8 @@
     SQUARE,
     KAMIKAZE,
     SHOOTER,
-    OCTOSHOT
+    OCTOSHOT,
+    DASH
 }
 
 // extension methods
@@ -19,9 +20,11 @@ static class EnemyTypeMethods
             case EnemyType.KAMIKAZE:
                 return 15;
             case EnemyType.SHOOTER:
-                return 20;
+                return 40;
             case EnemyType.OCTOSHOT:
                 return 100;
+            case EnemyType.DASH:
+                return 25;
             default:
                 return 0;
         }

@@ -60,6 +60,7 @@ MonoBehaviour:
     type: 2}
   octoshotEnemy: {fileID: 1691656688955232, guid: 915723efca5ac2846b970a72f5a4e173,
     type: 2}
+  dashEnemy: {fileID: 1975905107758526, guid: 81d73d35406e09f43bd3aec69944aee8, type: 2}
   arenaLocator: {fileID: 114333953151534094}
   player: {fileID: 0}
 --- !u!114 &114333953151534094

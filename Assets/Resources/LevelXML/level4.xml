@@ -5,12 +5,44 @@
   <CompletionPoints>225</CompletionPoints>
   <Stage>
     <EnemySpawn>
-      <EnemyType>OCTOSHOT</EnemyType>
+      <EnemyType>DASH</EnemyType>
+      <SpawnLocation>
+		<X>-2</X>
+		<Y>2</Y>
+	  </SpawnLocation>
+	  <SpawnTiming>0</SpawnTiming>
+	</EnemySpawn>
+    <EnemySpawn>
+      <EnemyType>DASH</EnemyType>
+      <SpawnLocation>
+		<X>-1</X>
+		<Y>2</Y>
+	  </SpawnLocation>
+	  <SpawnTiming>0.25</SpawnTiming>
+	</EnemySpawn>
+    <EnemySpawn>
+      <EnemyType>DASH</EnemyType>
       <SpawnLocation>
 		<X>0</X>
 		<Y>2</Y>
 	  </SpawnLocation>
-	  <SpawnTiming>0</SpawnTiming>
+	  <SpawnTiming>0.5</SpawnTiming>
+	</EnemySpawn>
+    <EnemySpawn>
+      <EnemyType>DASH</EnemyType>
+      <SpawnLocation>
+		<X>1</X>
+		<Y>2</Y>
+	  </SpawnLocation>
+	  <SpawnTiming>0.75</SpawnTiming>
+	</EnemySpawn>
+    <EnemySpawn>
+      <EnemyType>DASH</EnemyType>
+      <SpawnLocation>
+		<X>2</X>
+		<Y>2</Y>
+	  </SpawnLocation>
+	  <SpawnTiming>1</SpawnTiming>
 	</EnemySpawn>
   </Stage>
 </Level>
