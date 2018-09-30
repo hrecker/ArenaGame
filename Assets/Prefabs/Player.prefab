@@ -194,6 +194,7 @@ MonoBehaviour:
   shotSpeedMultiplier: 1
   levelChargeDelayMultiplier: 1
   fireDelayMultiplier: 1
+  maxBounces: 0
 --- !u!114 &114622696689441950
 MonoBehaviour:
   m_ObjectHideFlags: 1

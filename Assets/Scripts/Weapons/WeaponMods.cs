@@ -9,6 +9,7 @@ public class WeaponMods : MonoBehaviour
     public float shotSpeedMultiplier = 1;
     public float levelChargeDelayMultiplier = 1;
     public float fireDelayMultiplier = 1;
+    public int maxBounces;
 
     // Instantiates a simple projectile and returns the created object
     // If not enough time has passed based on fire delay, returns null
@@ -27,6 +28,12 @@ public class WeaponMods : MonoBehaviour
         bulletMovement.velocity = direction.normalized * (baseSpeed * shotSpeedMultiplier);
         ShotDamageBase damage = projectile.GetComponent<ShotDamageBase>();
         damage.damage = (baseDamage + damageBuffs) * damageMultiplier;
+        if (maxBounces >= 1)
+        {
+            damage.bouncy = true;
+            damage.maxBouncesBeforeDestroyed = maxBounces;
+            damage.destroyOnBlockerHit = false;
+        }
         //TODO more multipliers
         return projectile;
     }

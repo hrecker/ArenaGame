@@ -11,6 +11,10 @@ public abstract class ShotDamageBase : MonoBehaviour
     public int maxHitsBeforeDestroyed = 1;
     protected int hits;
 
+    public bool bouncy = false;
+    public int maxBouncesBeforeDestroyed = 5;
+    protected int bounces;
+
     public abstract void OnTriggerEnter2D(Collider2D collider);
 
 }
