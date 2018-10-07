@@ -3,6 +3,11 @@
   <LevelNumber>6</LevelNumber>
   <Arena>Diamond</Arena>
   <CompletionPoints>500</CompletionPoints>
+  <VictoryItems>
+    <Item>Heart</Item>
+    <Item>Heart</Item>
+    <Item>Heart</Item>
+  </VictoryItems>
   <Stage>
     <EnemySpawn>
       <EnemyType>OCTOSHOT</EnemyType>

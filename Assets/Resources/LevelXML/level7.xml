@@ -3,6 +3,11 @@
   <LevelNumber>7</LevelNumber>
   <Arena>Path</Arena>
   <CompletionPoints>700</CompletionPoints>
+  <VictoryItems>
+    <Item>SimpleGun</Item>
+    <Item>Heart</Item>
+    <Item>BuffDamage</Item>
+  </VictoryItems>
   <Stage>
     <EnemySpawn>
       <EnemyType>DASH</EnemyType>

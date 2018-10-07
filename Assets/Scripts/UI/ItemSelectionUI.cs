@@ -53,7 +53,7 @@ public class ItemSelectionUI : MonoBehaviour
     {
         if (!isLastLevel)
         {
-            currentItems = ItemRandomizer.RandomizeItems(level.LevelNumber);
+            currentItems = ItemLoader.GetVictoryItems(level.LevelNumber);
             item1.sprite = currentItems[0].sprite;
             item2.sprite = currentItems[1].sprite;
             item3.sprite = currentItems[2].sprite;

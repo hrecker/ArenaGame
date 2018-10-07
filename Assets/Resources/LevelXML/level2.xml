@@ -3,6 +3,11 @@
   <LevelNumber>2</LevelNumber>
   <Arena>SmallRectangular</Arena>
   <CompletionPoints>125</CompletionPoints>
+  <VictoryItems>
+    <Item>ChargeGun</Item>
+    <Item>Heart</Item>
+    <Item>GrenadeLauncher</Item>
+  </VictoryItems>
   <Stage>
     <EnemySpawn>
       <EnemyType>SQUARE</EnemyType>

@@ -8,6 +8,7 @@ public class Level
     public List<LevelStage> Stages { get; set; }
     public int CompletionPoints { get; set; }
     public int LevelNumber { get; set; }
+    public string[] ItemSelection { get; set; }
 }
 
 public class LevelStage
