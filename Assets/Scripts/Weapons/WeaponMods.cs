@@ -26,7 +26,7 @@ public class WeaponMods : MonoBehaviour
         //TODO eventually make movement more generic
         StraightConstantMovement bulletMovement = projectile.GetComponent<StraightConstantMovement>();
         bulletMovement.velocity = direction.normalized * (baseSpeed * shotSpeedMultiplier);
-        ShotDamageBase damage = projectile.GetComponent<ShotDamageBase>();
+        ShotDamage damage = projectile.GetComponent<ShotDamage>();
         damage.damage = (baseDamage + damageBuffs) * damageMultiplier;
         if (maxBounces >= 1)
         {
@@ -57,7 +57,7 @@ public class WeaponMods : MonoBehaviour
         //TODO eventually make movement more generic
         StraightConstantMovement bulletMovement = projectile.GetComponent<StraightConstantMovement>();
         bulletMovement.velocity = direction.normalized * (baseSpeed * shotSpeedMultiplier);
-        ShotDamageBase damage = projectile.GetComponent<ShotDamageBase>();
+        ShotDamage damage = projectile.GetComponent<ShotDamage>();
         damage.damage = (damage.damage + damageBuffs) * damageMultiplier;
         //TODO more multipliers
         return projectile;

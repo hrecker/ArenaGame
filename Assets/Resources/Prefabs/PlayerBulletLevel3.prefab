@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114761580934576344}
   - component: {fileID: 58386624967302868}
   - component: {fileID: 50642456637050900}
-  - component: {fileID: 114691991989523648}
+  - component: {fileID: 114983419494696012}
   m_Layer: 0
   m_Name: PlayerBulletLevel3
   m_TagString: PlayerShot
@@ -92,19 +92,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyTime: 5
---- !u!114 &114691991989523648
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1096811873252730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3804a84761638049bf226fae467c5de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 3
-  maxHitsBeforeDestroyed: 2
 --- !u!114 &114761580934576344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,6 +104,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 1, y: 1}
+--- !u!114 &114983419494696012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096811873252730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d4c7879059fc5f46af8968723112b3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayerOwned: 1
+  destroyOnBlockerHit: 1
+  damage: 3
+  maxHitsBeforeDestroyed: 2
+  bouncy: 0
+  maxBouncesBeforeDestroyed: 5
 --- !u!212 &212873951698826182
 SpriteRenderer:
   m_ObjectHideFlags: 1

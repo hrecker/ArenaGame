@@ -32,7 +32,7 @@ public class GrenadeLauncher : WeaponBase
         if (grenade != null)
         {
             Grenade grenadeScript = grenade.GetComponent<Grenade>();
-            grenadeScript.playerOwned = isPlayerOwned;
+            grenadeScript.isPlayerOwned = isPlayerOwned;
             return true;
         }
         return false;

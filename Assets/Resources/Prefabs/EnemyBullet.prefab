@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114066540234286068}
   - component: {fileID: 58696691384098300}
   - component: {fileID: 50448614833670084}
-  - component: {fileID: 114838258677247102}
+  - component: {fileID: 114133671013982530}
   m_Layer: 0
   m_Name: EnemyBullet
   m_TagString: PlayerShot
@@ -92,6 +92,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 1, y: 1}
+--- !u!114 &114133671013982530
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777999340903826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d4c7879059fc5f46af8968723112b3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayerOwned: 0
+  destroyOnBlockerHit: 1
+  damage: 1
+  maxHitsBeforeDestroyed: 1
+  bouncy: 0
+  maxBouncesBeforeDestroyed: 5
 --- !u!114 &114450603567638484
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -104,19 +121,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyTime: 5
---- !u!114 &114838258677247102
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1777999340903826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec5dab61b29d7744cad912fa8897da21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  maxHitsBeforeDestroyed: 1
 --- !u!212 &212722912527829054
 SpriteRenderer:
   m_ObjectHideFlags: 1

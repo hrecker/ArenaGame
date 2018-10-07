@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114660069901737218}
   - component: {fileID: 58383155725839400}
   - component: {fileID: 50528173587650646}
-  - component: {fileID: 114582794265288366}
+  - component: {fileID: 114585217105805468}
   m_Layer: 0
   m_Name: PlayerBulletLevel2
   m_TagString: PlayerShot
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyTime: 5
---- !u!114 &114582794265288366
+--- !u!114 &114585217105805468
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -100,11 +100,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1610195594016398}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3804a84761638049bf226fae467c5de, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d4c7879059fc5f46af8968723112b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerOwned: 1
+  destroyOnBlockerHit: 1
   damage: 2
   maxHitsBeforeDestroyed: 1
+  bouncy: 0
+  maxBouncesBeforeDestroyed: 5
 --- !u!114 &114660069901737218
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4768915883852180}
   - component: {fileID: 212314796962968754}
-  - component: {fileID: 114932502155108078}
   - component: {fileID: 58323842076242700}
   - component: {fileID: 50547456061303168}
   - component: {fileID: 114888812816551282}
+  - component: {fileID: 114087363735535664}
   m_Layer: 0
   m_Name: MoonPet
   m_TagString: PlayerShot
@@ -79,6 +79,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 12
+--- !u!114 &114087363735535664
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1751731410675040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d4c7879059fc5f46af8968723112b3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayerOwned: 1
+  destroyOnBlockerHit: 0
+  damage: 1
+  maxHitsBeforeDestroyed: 0
+  bouncy: 0
+  maxBouncesBeforeDestroyed: 5
 --- !u!114 &114888812816551282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -92,20 +109,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angularSpeed: 1
   orbitRadius: 1
---- !u!114 &114932502155108078
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1751731410675040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3804a84761638049bf226fae467c5de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyOnBlockerHit: 0
-  damage: 1
-  maxHitsBeforeDestroyed: 0
 --- !u!212 &212314796962968754
 SpriteRenderer:
   m_ObjectHideFlags: 1

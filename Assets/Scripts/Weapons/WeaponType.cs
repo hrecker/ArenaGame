@@ -10,9 +10,9 @@
                 return CreateChargeGun(mods, isPlayerControlled);
             case "GrenadeLauncher":
                 return CreateGrenadeLauncher(mods, isPlayerControlled);
-            // default to simple gun
             case "MiniGun":
                 return CreateMiniGun(mods, isPlayerControlled);
+            // default to simple gun
             default:
                 return CreateSimpleGun(mods, isPlayerControlled);
         }
