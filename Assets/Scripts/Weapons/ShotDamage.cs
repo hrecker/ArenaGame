@@ -8,6 +8,11 @@ public class ShotDamage : MonoBehaviour
 
     public bool destroyOnBlockerHit = true;
 
+    // Number of frames that this shot will not hit when it first spawns
+    // Used to avoid level 3 charge shots instantly being destroyed by adjacent walls
+    public int disabledFrames = 0;
+    private int currentFramesPassed = 0;
+
     public float damage = 1;
     // If max hits before destroyed is 0, this shot can hit any number of times and will not be destroyed
     public int maxHitsBeforeDestroyed = 1;
@@ -26,6 +31,22 @@ public class ShotDamage : MonoBehaviour
         movement = GetComponent<StraightConstantMovement>();
         //TODO allow other shot shapes?
         circleCollider = GetComponent<CircleCollider2D>();
+        if (disabledFrames > 0)
+        {
+            circleCollider.enabled = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (!circleCollider.enabled)
+        {
+            currentFramesPassed++;
+            if (currentFramesPassed >= disabledFrames)
+            {
+                circleCollider.enabled = true;
+            }
+        }
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collider)
