@@ -17,12 +17,22 @@ public class LevelXMLParser
         return ParseLevel(XElement.Load(xmlfilepath));
     }
 
+    //TODO better error output when xml parsing fails
     private static Level ParseLevel(XElement root)
     {
         Level level = new Level();
         level.ArenaName = root.Element("Arena").Value;
         level.CompletionPoints = int.Parse(root.Element("CompletionPoints").Value);
         level.LevelNumber = int.Parse(root.Element("LevelNumber").Value);
+
+        level.ItemSelection = new string[3];
+        int i = 0;
+        foreach(XElement itemElement in root.Element("VictoryItems").Elements("Item"))
+        {
+            level.ItemSelection[i] = itemElement.Value;
+            i++;
+        }
+
         level.Stages = new List<LevelStage>();
 
         IEnumerable<XElement> stageElements = root.Elements("Stage");

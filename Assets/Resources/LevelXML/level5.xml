@@ -3,6 +3,11 @@
   <LevelNumber>5</LevelNumber>
   <Arena>SmallRectangular</Arena>
   <CompletionPoints>400</CompletionPoints>
+  <VictoryItems>
+    <Item>ChargeGun</Item>
+    <Item>Heart</Item>
+    <Item>BuffDamage</Item>
+  </VictoryItems>
   <Stage>
     <EnemySpawn>
       <EnemyType>OCTOSHOT</EnemyType>

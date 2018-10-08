@@ -3,6 +3,11 @@
   <LevelNumber>1</LevelNumber>
   <Arena>SmallRectangular</Arena>
   <CompletionPoints>100</CompletionPoints>
+  <VictoryItems>
+    <Item>Heart</Item>
+    <Item>Heart</Item>
+    <Item>Heart</Item>
+  </VictoryItems>
   <Stage>
     <EnemySpawn>
       <EnemyType>SQUARE</EnemyType>

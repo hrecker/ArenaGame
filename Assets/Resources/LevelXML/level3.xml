@@ -3,6 +3,11 @@
   <LevelNumber>3</LevelNumber>
   <Arena>SmallRectangular</Arena>
   <CompletionPoints>200</CompletionPoints>
+  <VictoryItems>
+    <Item>SimpleGun</Item>
+    <Item>Heart</Item>
+    <Item>Heart</Item>
+  </VictoryItems>
   <Stage>
     <EnemySpawn>
       <EnemyType>KAMIKAZE</EnemyType>

@@ -3,6 +3,11 @@
   <LevelNumber>4</LevelNumber>
   <Arena>SmallRectangular</Arena>
   <CompletionPoints>225</CompletionPoints>
+  <VictoryItems>
+    <Item>SimpleGun</Item>
+    <Item>Heart</Item>
+    <Item>BuffDamage</Item>
+  </VictoryItems>
   <Stage>
     <EnemySpawn>
       <EnemyType>DASH</EnemyType>
