@@ -117,6 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerOwned: 1
   destroyOnBlockerHit: 1
+  disabledFrames: 1
   damage: 3
   maxHitsBeforeDestroyed: 2
   bouncy: 0
