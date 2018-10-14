@@ -17,5 +17,6 @@ public enum ItemEffectType
     BUFFDAMAGE,
     HEAL,
     WEAPON,
+    PET,
     SPECIAL
 }

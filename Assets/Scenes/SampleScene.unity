@@ -247,11 +247,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114600288958776832, guid: c9319774048885a428bd4366d61e9329,
-        type: 2}
-      propertyPath: maxBounces
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c9319774048885a428bd4366d61e9329, type: 2}
   m_IsPrefabParent: 0
@@ -391,6 +386,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 1749162989561842, guid: 44feb64b9da02b340b5a2dcb609187ac, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 44feb64b9da02b340b5a2dcb609187ac, type: 2}
   m_IsPrefabParent: 0
@@ -474,6 +473,10 @@ Prefab:
     - target: {fileID: 4768915883852180, guid: 12e561273365f4d46a7ca8db70204efb, type: 2}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751731410675040, guid: 12e561273365f4d46a7ca8db70204efb, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 12e561273365f4d46a7ca8db70204efb, type: 2}
@@ -1463,11 +1466,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114333953151534094, guid: 9e9f3c820edef664bb219958459ba7ea,
-        type: 2}
-      propertyPath: arenas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4571688395111056, guid: 9e9f3c820edef664bb219958459ba7ea, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1500,27 +1498,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114333953151534094, guid: 9e9f3c820edef664bb219958459ba7ea,
-        type: 2}
-      propertyPath: arenas.Array.data[4].arenaName
-      value: Path
-      objectReference: {fileID: 0}
-    - target: {fileID: 114333953151534094, guid: 9e9f3c820edef664bb219958459ba7ea,
-        type: 2}
-      propertyPath: arenas.Array.data[4].spawnLocation.y
-      value: -6.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114333953151534094, guid: 9e9f3c820edef664bb219958459ba7ea,
-        type: 2}
-      propertyPath: arenas.Array.data[4].spawnLocation.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114063251511834336, guid: 9e9f3c820edef664bb219958459ba7ea,
-        type: 2}
-      propertyPath: dashEnemy
-      value: 
-      objectReference: {fileID: 1776043967304220, guid: af01924fc38452d4faea154dd15ffdf1,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e9f3c820edef664bb219958459ba7ea, type: 2}
   m_IsPrefabParent: 0

@@ -42,6 +42,15 @@ public class ItemExecutor
             }
         }
 
+        if (item.type == ItemEffectType.PET)
+        {
+            // TODO remove current pet ever?   
+                     
+            // spawn new pet
+            GameObject petPrefab = Resources.Load<GameObject>("Prefabs/" + item.name);
+            GameObject.Instantiate(petPrefab, player.transform.position, player.transform.rotation);
+        }
+
         // TODO other item types
     }
 }

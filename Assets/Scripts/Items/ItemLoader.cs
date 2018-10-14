@@ -38,6 +38,11 @@ public class ItemLoader
                 result.type = ItemEffectType.HEAL;
                 result.itemEffectQuantity = 1;
                 break;
+            case "MoonPet":
+            case "ShieldPet":
+                result.type = ItemEffectType.PET;
+                result.itemEffectQuantity = 1;
+                break;
         }
         return result;
     }

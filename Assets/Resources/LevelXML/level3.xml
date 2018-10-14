@@ -6,7 +6,7 @@
   <VictoryItems>
     <Item>SimpleGun</Item>
     <Item>Heart</Item>
-    <Item>Heart</Item>
+    <Item>ShieldPet</Item>
   </VictoryItems>
   <Stage>
     <EnemySpawn>

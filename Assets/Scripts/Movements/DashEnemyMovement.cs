@@ -34,7 +34,14 @@ public class DashEnemyMovement : MonoBehaviour
                 // Start dash 
                 currentDashDuration = 0;
                 currentlyDashing = true;
-                dashDirection = player.transform.position - transform.position;
+                if (player == null)
+                {
+                    this.enabled = false;
+                }
+                else
+                {
+                    dashDirection = player.transform.position - transform.position;
+                }
             }
         }
         else
