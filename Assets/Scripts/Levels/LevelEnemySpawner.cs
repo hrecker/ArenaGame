@@ -10,11 +10,14 @@ public class LevelEnemySpawner : MonoBehaviour
     public GameObject shooterEnemy;
     public GameObject octoshotEnemy;
     public GameObject dashEnemy;
+    public GameObject cloudbossEnemy;
 
     public ArenaLocator arenaLocator;
     private Vector2 baseArenaSpawnLocation;
 
     public GameObject player;
+
+    public int startLevelIndexDebug = 0;
 
     private List<Level> levels;
     private int currentLevelIndex;
@@ -33,7 +36,7 @@ public class LevelEnemySpawner : MonoBehaviour
         SceneMessenger.Instance.AddListener(Message.LEVEL_STARTED, new SceneMessenger.VoidCallback(StartNextLevel));
         SceneMessenger.Instance.AddListener(Message.READY_TO_START_LEVEL, new SceneMessenger.VoidCallback(MoveToArena));
         levels = LevelLoader.LoadAllLevels();
-        currentLevelIndex = -1;
+        currentLevelIndex = startLevelIndexDebug - 1;
         allLevelsComplete = false;
         levelActive = false;
         if (player == null)
@@ -41,6 +44,11 @@ public class LevelEnemySpawner : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player");
         }
         currentArena = levels[0].ArenaName;
+
+        if (startLevelIndexDebug != 0)
+        {
+            MoveToArena();
+        }
     }
 
     public void StartNextLevel()
@@ -135,6 +143,8 @@ public class LevelEnemySpawner : MonoBehaviour
                 return octoshotEnemy;
             case EnemyType.DASH:
                 return dashEnemy;
+            case EnemyType.CLOUDBOSS:
+                return cloudbossEnemy;
             default:
                 return squareEnemy;
         }

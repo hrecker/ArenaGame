@@ -14,7 +14,7 @@ public class ArenaLocator : MonoBehaviour
     public ArenaSpawnLocation[] arenas;
     private Dictionary<String, Vector2> arenaSpawns;
 
-    void Start () 
+    void Awake () 
 	{
         arenaSpawns = new Dictionary<string, Vector2>();
         foreach (ArenaSpawnLocation arenaSpawnLocation in arenas)

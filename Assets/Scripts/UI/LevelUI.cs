@@ -36,6 +36,7 @@ public class LevelUI : MonoBehaviour
 
     public void CompleteLevel(Level level, bool isLastLevel)
     {
+        currentLevelNum = level.LevelNumber;
         currentLevelStartingDelay = 0;
         startingLevel = false;
         levelCompleteText.text = "Level " + currentLevelNum + " Complete!";

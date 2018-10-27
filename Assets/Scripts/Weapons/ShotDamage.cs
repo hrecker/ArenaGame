@@ -39,7 +39,7 @@ public class ShotDamage : MonoBehaviour
 
     private void Update()
     {
-        if (!circleCollider.enabled)
+        if (circleCollider != null && !circleCollider.enabled)
         {
             currentFramesPassed++;
             if (currentFramesPassed >= disabledFrames)

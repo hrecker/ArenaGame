@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Level>
+  <LevelNumber>8</LevelNumber>
+  <Arena>SmallRectangular</Arena>
+  <CompletionPoints>1000</CompletionPoints>
+  <VictoryItems>
+    <Item>Heart</Item>
+    <Item>Heart</Item>
+    <Item>Heart</Item>
+  </VictoryItems>
+  <Stage>
+    <EnemySpawn>
+      <EnemyType>CLOUDBOSS</EnemyType>
+      <SpawnLocation>
+		<X>0</X>
+		<Y>0</Y>
+	  </SpawnLocation>
+	  <SpawnTiming>0</SpawnTiming>
+	</EnemySpawn>
+  </Stage>
+</Level>

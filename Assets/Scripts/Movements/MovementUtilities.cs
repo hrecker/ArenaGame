@@ -88,6 +88,12 @@ public class MovementUtilities
         return false;
     }
 
+    public static bool Box2DObstaclePresent(Vector2 origin, Vector2 direction, float distance)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, distance, Physics.DefaultRaycastLayers, 5);
+        return hit.collider != null;
+    }
+
     private static Vector2 Circle2DPreResolveObstacles(Vector2 currentVelocity, Vector3 position, float radius)
     {
         Vector2 frameVelocity = currentVelocity * Time.deltaTime;

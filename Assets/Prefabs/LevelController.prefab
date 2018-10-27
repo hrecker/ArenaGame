@@ -61,8 +61,11 @@ MonoBehaviour:
   octoshotEnemy: {fileID: 1691656688955232, guid: 915723efca5ac2846b970a72f5a4e173,
     type: 2}
   dashEnemy: {fileID: 1776043967304220, guid: af01924fc38452d4faea154dd15ffdf1, type: 2}
+  cloudbossEnemy: {fileID: 1889418368691768, guid: 84b316a2db8af5b4e9c6c6b2628fead6,
+    type: 2}
   arenaLocator: {fileID: 114333953151534094}
   player: {fileID: 0}
+  startLevelIndexDebug: 0
 --- !u!114 &114333953151534094
 MonoBehaviour:
   m_ObjectHideFlags: 1

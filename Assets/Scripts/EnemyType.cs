@@ -4,7 +4,8 @@
     KAMIKAZE,
     SHOOTER,
     OCTOSHOT,
-    DASH
+    DASH,
+    CLOUDBOSS
 }
 
 // extension methods
