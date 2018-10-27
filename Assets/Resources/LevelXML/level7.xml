@@ -4,9 +4,9 @@
   <Arena>Path</Arena>
   <CompletionPoints>700</CompletionPoints>
   <VictoryItems>
-    <Item>BuffDamage</Item>
+    <Item>SimpleGun</Item>
     <Item>Heart</Item>
-    <Item>BuffDamage</Item>
+    <Item>ChargeGun</Item>
   </VictoryItems>
   <Stage>
     <EnemySpawn>

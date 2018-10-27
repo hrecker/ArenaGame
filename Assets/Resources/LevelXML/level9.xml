@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Level>
-  <LevelNumber>8</LevelNumber>
+  <LevelNumber>9</LevelNumber>
   <Arena>Diamond</Arena>
   <CompletionPoints>700</CompletionPoints>
-  <VictoryItems>
-	<Item>GrenadeLauncher</Item>
-    <Item>Heart</Item>
-    <Item>ShieldPet</Item>
+  <VictoryItems>    
+    <Item>SuperHeart</Item>
+    <Item>SuperHeart</Item>
+    <Item>SuperHeart</Item>
   </VictoryItems>
   <Stage>
     <EnemySpawn>
-      <EnemyType>DASH</EnemyType>
+      <EnemyType>KAMIKAZE</EnemyType>
       <SpawnLocation>
 		<X>0</X>
 		<Y>10</Y>
@@ -18,7 +18,7 @@
 	  <SpawnTiming>0</SpawnTiming>
 	</EnemySpawn>
     <EnemySpawn>
-      <EnemyType>DASH</EnemyType>
+      <EnemyType>KAMIKAZE</EnemyType>
       <SpawnLocation>
 		<X>5</X>
 		<Y>5</Y>
@@ -26,7 +26,7 @@
 	  <SpawnTiming>0</SpawnTiming>
 	</EnemySpawn>
     <EnemySpawn>
-      <EnemyType>DASH</EnemyType>
+      <EnemyType>KAMIKAZE</EnemyType>
       <SpawnLocation>
 		<X>10</X>
 		<Y>0</Y>
@@ -34,7 +34,7 @@
 	  <SpawnTiming>0</SpawnTiming>
 	</EnemySpawn>
     <EnemySpawn>
-      <EnemyType>DASH</EnemyType>
+      <EnemyType>KAMIKAZE</EnemyType>
       <SpawnLocation>
 		<X>5</X>
 		<Y>-5</Y>
@@ -42,7 +42,7 @@
 	  <SpawnTiming>0</SpawnTiming>
 	</EnemySpawn>
     <EnemySpawn>
-      <EnemyType>DASH</EnemyType>
+      <EnemyType>KAMIKAZE</EnemyType>
       <SpawnLocation>
 		<X>0</X>
 		<Y>-10</Y>
@@ -50,7 +50,7 @@
 	  <SpawnTiming>0</SpawnTiming>
 	</EnemySpawn>
     <EnemySpawn>
-      <EnemyType>DASH</EnemyType>
+      <EnemyType>KAMIKAZE</EnemyType>
       <SpawnLocation>
 		<X>-5</X>
 		<Y>-5</Y>
@@ -58,7 +58,7 @@
 	  <SpawnTiming>0</SpawnTiming>
 	</EnemySpawn>
     <EnemySpawn>
-      <EnemyType>DASH</EnemyType>
+      <EnemyType>KAMIKAZE</EnemyType>
       <SpawnLocation>
 		<X>-10</X>
 		<Y>0</Y>
@@ -66,7 +66,7 @@
 	  <SpawnTiming>0</SpawnTiming>
 	</EnemySpawn>
     <EnemySpawn>
-      <EnemyType>DASH</EnemyType>
+      <EnemyType>KAMIKAZE</EnemyType>
       <SpawnLocation>
 		<X>-5</X>
 		<Y>5</Y>

@@ -38,6 +38,10 @@ public class ItemLoader
                 result.type = ItemEffectType.HEAL;
                 result.itemEffectQuantity = 1;
                 break;
+            case "SuperHeart":
+                result.type = ItemEffectType.HEAL;
+                result.itemEffectQuantity = 3;
+                break;
             case "MoonPet":
             case "ShieldPet":
                 result.type = ItemEffectType.PET;

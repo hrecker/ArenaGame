@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class LevelLoader 
 {
@@ -19,9 +20,11 @@ public class LevelLoader
             }
         }
         List<Level> result = new List<Level>();
-        foreach(Level level in levelsByLevelNum.Values)
+        List<int> sortedLevelNums = levelsByLevelNum.Keys.ToList();
+        sortedLevelNums.Sort();
+        foreach (int levelNum in sortedLevelNums)
         {
-            result.Add(level);
+            result.Add(levelsByLevelNum[levelNum]);
         }
         return result;
     }

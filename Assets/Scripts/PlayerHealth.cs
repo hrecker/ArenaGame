@@ -93,9 +93,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void GainHealth(int gained)
     {
-        if (health >= maxHealth)
+        if (health + gained > maxHealth)
         {
-            gained = 0;
+            gained = Mathf.Max(maxHealth - health, 0);
         }
         health += gained;
 
