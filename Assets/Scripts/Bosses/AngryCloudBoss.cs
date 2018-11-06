@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AngryCloudBoss : MonoBehaviour 
+public class AngryCloudBoss : MonoBehaviour, IPauseable
 {
     private enum Phase
     {
@@ -32,6 +32,8 @@ public class AngryCloudBoss : MonoBehaviour
     public Sprite bounceSprite;
     private SpriteRenderer spriteRenderer;
 
+    private bool paused = false;
+
     void Awake ()
     {
         bulletPrefab = Resources.Load<GameObject>("Prefabs/EnemyBullet");
@@ -48,6 +50,11 @@ public class AngryCloudBoss : MonoBehaviour
 	
 	void Update () 
 	{
+        if (paused)
+        {
+            return;
+        }
+
         currentPhaseLength += Time.deltaTime;
         switch(currentPhase)
         {
@@ -163,5 +170,15 @@ public class AngryCloudBoss : MonoBehaviour
         }
 
         this.transform.Translate(currentVelocity * Time.deltaTime);
+    }
+
+    public void OnPause()
+    {
+        paused = true;
+    }
+
+    public void OnResume()
+    {
+        paused = false;
     }
 }

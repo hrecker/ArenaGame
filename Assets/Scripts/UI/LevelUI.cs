@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelUI : MonoBehaviour 
+public class LevelUI : MonoBehaviour, IPauseable
 {
     public Text currentLevelText;
     public Text levelCompleteText;
@@ -12,8 +12,10 @@ public class LevelUI : MonoBehaviour
     private bool startingLevel;
     private bool allLevelsComplete;
     private int currentLevelNum = 1;
-    
-	void Start () 
+
+    private bool paused = false;
+
+    void Start () 
 	{
         levelCompleteText.enabled = false;
         SceneMessenger.Instance.AddListener(Message.LEVEL_COMPLETED, new SceneMessenger.LevelCallback(CompleteLevel));
@@ -22,8 +24,13 @@ public class LevelUI : MonoBehaviour
         StartNextLevel();
 	}
 	
-	void Update () 
-	{
+	void Update ()
+    {
+        if (paused)
+        {
+            return;
+        }
+
         if (startingLevel)
         {
             currentLevelStartingDelay += Time.deltaTime;
@@ -61,5 +68,15 @@ public class LevelUI : MonoBehaviour
         startingLevel = false;
         levelCompleteText.enabled = false;
         SceneMessenger.Instance.Invoke(Message.LEVEL_STARTED, null);
+    }
+
+    public void OnPause()
+    {
+        paused = true;
+    }
+
+    public void OnResume()
+    {
+        paused = false;
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour 
+public class PlayerHealth : MonoBehaviour, IPauseable 
 {
     public int health = 3;
     public int maxHealth = 5;
@@ -14,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool invincible = false;
 
+    private bool paused = false;
+
     void Start()
     {
         messenger = this.GetMessenger();
@@ -22,6 +24,11 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
+        if (paused)
+        {
+            return;
+        }
+
         if (invincible)
         {
             invincibilityRemaining -= Time.deltaTime;
@@ -103,5 +110,15 @@ public class PlayerHealth : MonoBehaviour
         {
             SceneMessenger.Instance.Invoke(Message.PLAYER_HEALTH_GAINED, new object[] { health, gained });
         }
+    }
+
+    public void OnPause()
+    {
+        paused = true;
+    }
+
+    public void OnResume()
+    {
+        paused = false;
     }
 }

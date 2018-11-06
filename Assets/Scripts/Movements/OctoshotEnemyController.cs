@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Controls both movement and weapons for the octoshot enemy
-public class OctoshotEnemyController : MonoBehaviour 
+public class OctoshotEnemyController : MonoBehaviour, IPauseable 
 {
     public GameObject player;
     public float maxSpeed = 3.0f;
@@ -20,6 +20,8 @@ public class OctoshotEnemyController : MonoBehaviour
     private WeaponBase weapon;
     private Collider2D movementCollider;
 
+    private bool paused = false;
+
     void Start()
     {
         mods = GetComponent<WeaponMods>();
@@ -34,6 +36,11 @@ public class OctoshotEnemyController : MonoBehaviour
 
     void Update()
     {
+        if (paused)
+        {
+            return;
+        }
+
         if (player != null)
         {
             currentStageTime += Time.deltaTime;
@@ -82,5 +89,15 @@ public class OctoshotEnemyController : MonoBehaviour
     {
         float angleRandomization = ((360 * Random.value) - 180) * movementRandomization;
         return startingDirection.Rotate(angleRandomization);
+    }
+
+    public void OnPause()
+    {
+        paused = true;
+    }
+
+    public void OnResume()
+    {
+        paused = false;
     }
 }

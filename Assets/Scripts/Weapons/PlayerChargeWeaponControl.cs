@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerChargeWeaponControl : MonoBehaviour
+public class PlayerChargeWeaponControl : MonoBehaviour, IPauseable
 {
     [Range(0, 1.0f)]
     public float deadzone = 0.5f;
@@ -14,6 +14,8 @@ public class PlayerChargeWeaponControl : MonoBehaviour
     private float timeSinceLastFire;
     private ChargeWeaponBase weapon;
     private WeaponMods weaponMods;
+
+    private bool paused = false;
 
     void OnEnable()
     {
@@ -28,6 +30,11 @@ public class PlayerChargeWeaponControl : MonoBehaviour
 
     void Update()
     {
+        if (paused)
+        {
+            return;
+        }
+
         timeSinceLastFire += Time.deltaTime;
         // Control main weapon
         float h = Input.GetAxis("Horizontal2");
@@ -63,5 +70,15 @@ public class PlayerChargeWeaponControl : MonoBehaviour
     public void SetWeapon(string newWeaponName)
     {
         weapon = (ChargeWeaponBase) WeaponType.GetWeapon(weaponMods, newWeaponName, true);
+    }
+
+    public void OnPause()
+    {
+        paused = true;
+    }
+
+    public void OnResume()
+    {
+        paused = false;
     }
 }

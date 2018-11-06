@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IPauseable
 {
     public float maxAcceleration = 500.0f;
     public float maxDrag = 100f;
@@ -10,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 currentVelocity = Vector2.zero;
     private bool movementEnabled;
     private Collider2D movementCollider;
+    private bool paused = false;
 
     void Start ()
     {
@@ -21,6 +23,10 @@ public class PlayerMovement : MonoBehaviour
 	
 	void Update ()
     {
+        if (paused)
+        {
+            return;
+        }
         /*if (!movementEnabled)
         {
             return;
@@ -62,6 +68,16 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 GetCurrentVelocity()
     {
         return currentVelocity;
+    }
+
+    public void OnPause()
+    {
+        paused = true;
+    }
+
+    public void OnResume()
+    {
+        paused = false;
     }
 
     /*public void FreezeMovement()

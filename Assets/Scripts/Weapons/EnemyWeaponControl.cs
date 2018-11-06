@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyWeaponControl : MonoBehaviour
+public class EnemyWeaponControl : MonoBehaviour, IPauseable
 {
     private float currentFireDelay;
     public GameObject player;
     private WeaponBase weapon;
     private WeaponMods mods;
+
+    private bool paused = false;
 
     private void Start()
     {
@@ -22,6 +24,11 @@ public class EnemyWeaponControl : MonoBehaviour
 
     void Update()
     {
+        if (paused)
+        {
+            return;
+        }
+
         if (player != null)
         {
             currentFireDelay += Time.deltaTime;
@@ -36,5 +43,15 @@ public class EnemyWeaponControl : MonoBehaviour
         {
             this.enabled = false;
         }
+    }
+
+    public void OnPause()
+    {
+        paused = true;
+    }
+
+    public void OnResume()
+    {
+        paused = false;
     }
 }

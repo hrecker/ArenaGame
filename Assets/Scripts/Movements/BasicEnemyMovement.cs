@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicEnemyMovement : MonoBehaviour 
+public class BasicEnemyMovement : MonoBehaviour, IPauseable 
 {
     public GameObject player;
     public float maxSpeed = 7.0f;
@@ -11,6 +11,8 @@ public class BasicEnemyMovement : MonoBehaviour
     public float movementRandomization = 0.1f;
     private Vector2 currentVelocity = Vector2.zero;
     private Collider2D movementCollider;
+
+    private bool paused = false;
 
     void Start ()
     {
@@ -21,8 +23,13 @@ public class BasicEnemyMovement : MonoBehaviour
         movementCollider = GetComponent<Collider2D>();
     }
 	
-	void Update () 
-	{
+	void Update ()
+    {
+        if (paused)
+        {
+            return;
+        }
+
         if (player != null)
         {
             Vector2 direction = player.transform.position - transform.position;
@@ -50,5 +57,15 @@ public class BasicEnemyMovement : MonoBehaviour
     {
         float angleRandomization = ((360 * Random.value) - 180) * movementRandomization;
         return startingDirection.Rotate(angleRandomization);
+    }
+
+    public void OnPause()
+    {
+        paused = true;
+    }
+
+    public void OnResume()
+    {
+        paused = false;
     }
 }

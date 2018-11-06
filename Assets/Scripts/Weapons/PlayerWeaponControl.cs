@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWeaponControl : MonoBehaviour 
+public class PlayerWeaponControl : MonoBehaviour, IPauseable
 {
     [Range(0, 1.0f)]
     public float deadzone = 0.5f;
     private float timeSinceLastFire;
     private WeaponBase weapon;
     private WeaponMods weaponMods;
+
+    private bool paused = false;
 
     void OnEnable()
     {
@@ -22,6 +24,11 @@ public class PlayerWeaponControl : MonoBehaviour
 
     void Update ()
     {
+        if (paused)
+        {
+            return;
+        }
+
         timeSinceLastFire += Time.deltaTime;
         // Control main weapon
         float h = Input.GetAxis("Horizontal2");
@@ -44,5 +51,15 @@ public class PlayerWeaponControl : MonoBehaviour
     public void SetWeapon(string newWeaponName)
     {
         weapon = WeaponType.GetWeapon(weaponMods, newWeaponName, true);
+    }
+
+    public void OnPause()
+    {
+        paused = true;
+    }
+
+    public void OnResume()
+    {
+        paused = false;
     }
 }

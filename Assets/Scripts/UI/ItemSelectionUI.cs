@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemSelectionUI : MonoBehaviour 
+public class ItemSelectionUI : MonoBehaviour, IPauseable
 {
     public Text selectItemText;
     public Image item1;
@@ -14,6 +14,8 @@ public class ItemSelectionUI : MonoBehaviour
     private int selectedIndex;
     private Item[] currentItems;
 
+    private bool paused = false;
+
     void Awake()
     {
         SetItemsEnabled(false);
@@ -23,7 +25,7 @@ public class ItemSelectionUI : MonoBehaviour
 	
 	void Update () 
 	{
-        if (!itemsEnabled)
+        if (!itemsEnabled || paused)
         {
             return;
         }
@@ -76,5 +78,15 @@ public class ItemSelectionUI : MonoBehaviour
         item3.enabled = enabled;
         selector.enabled = enabled;
         itemsEnabled = enabled;
+    }
+
+    public void OnPause()
+    {
+        paused = true;
+    }
+
+    public void OnResume()
+    {
+        paused = false;
     }
 }

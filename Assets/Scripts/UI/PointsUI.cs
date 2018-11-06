@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PointsUI : MonoBehaviour 
+public class PointsUI : MonoBehaviour
 {
     private Text pointsText;
     private int currentPoints = 0;

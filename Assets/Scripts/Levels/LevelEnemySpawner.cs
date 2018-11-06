@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelEnemySpawner : MonoBehaviour 
+public class LevelEnemySpawner : MonoBehaviour, IPauseable
 {
     // Enemy prefabs to be added in editor
     public GameObject squareEnemy;
@@ -29,9 +29,16 @@ public class LevelEnemySpawner : MonoBehaviour
     private bool allLevelsComplete;
     private bool levelActive;
     private string currentArena = "";
-    
-	void Start () 
-	{
+
+    private bool paused = false;
+
+    void Start ()
+    {
+        if (paused)
+        {
+            return;
+        }
+
         SceneMessenger.Instance.AddListener(Message.ENEMY_DEFEATED, new SceneMessenger.EnemyCallback(EnemyDefeated));
         SceneMessenger.Instance.AddListener(Message.LEVEL_STARTED, new SceneMessenger.VoidCallback(StartNextLevel));
         SceneMessenger.Instance.AddListener(Message.READY_TO_START_LEVEL, new SceneMessenger.VoidCallback(MoveToArena));
@@ -148,5 +155,15 @@ public class LevelEnemySpawner : MonoBehaviour
             default:
                 return squareEnemy;
         }
+    }
+
+    public void OnPause()
+    {
+        paused = true;
+    }
+
+    public void OnResume()
+    {
+        paused = false;
     }
 }

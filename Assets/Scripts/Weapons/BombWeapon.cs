@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 
-public class BombWeapon : MonoBehaviour 
+public class BombWeapon : MonoBehaviour, IPauseable
 {
     public GameObject bombPrefab;
     public float minFireInterval;
     private float timeSinceLastFire;
+
+    private bool paused = false;
 
     void Start()
     {
@@ -13,6 +15,11 @@ public class BombWeapon : MonoBehaviour
 
     void Update()
     {
+        if (paused)
+        {
+            return;
+        }
+
         timeSinceLastFire += Time.deltaTime;
     }
 
@@ -23,5 +30,15 @@ public class BombWeapon : MonoBehaviour
             Instantiate(bombPrefab, transform.position, transform.rotation);
             timeSinceLastFire = 0;
         }
+    }
+
+    public void OnPause()
+    {
+        paused = true;
+    }
+
+    public void OnResume()
+    {
+        paused = false;
     }
 }

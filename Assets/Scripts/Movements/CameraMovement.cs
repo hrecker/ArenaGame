@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraMovement : MonoBehaviour 
+public class CameraMovement : MonoBehaviour, IPauseable 
 {
     public Transform target;
     private float zLevel;
     public float smoothTime = 0.3F;
     public float maxSmoothDistance = 30.0f;
     private Vector3 velocity = Vector3.zero;
+
+    private bool paused = false;
 
     void Start()
     {
@@ -17,6 +19,11 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
+        if (paused)
+        {
+            return;
+        }
+
         if (target != null)
         {
             Vector3 targetPosition = new Vector3(target.transform.position.x, target.transform.position.y, zLevel);
@@ -29,5 +36,15 @@ public class CameraMovement : MonoBehaviour
                 transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
             }
         }
+    }
+
+    public void OnPause()
+    {
+        paused = true;
+    }
+
+    public void OnResume()
+    {
+        paused = false;
     }
 }

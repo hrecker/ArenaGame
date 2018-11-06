@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DashEnemyMovement : MonoBehaviour
+public class DashEnemyMovement : MonoBehaviour, IPauseable
 {
     public GameObject player;
     public float maxSpeed = 21.0f;
@@ -15,6 +15,8 @@ public class DashEnemyMovement : MonoBehaviour
     private float currentDashDelay = 0;
     private bool currentlyDashing = false;
 
+    private bool paused = false;
+
     void Start()
     {
         if (player == null)
@@ -26,6 +28,11 @@ public class DashEnemyMovement : MonoBehaviour
 
     void Update()
     {
+        if (paused)
+        {
+            return;
+        }
+
         if (!currentlyDashing)
         {
             currentDashDelay += Time.deltaTime;
@@ -60,5 +67,15 @@ public class DashEnemyMovement : MonoBehaviour
                 currentlyDashing = false;
             }
         }
+    }
+
+    public void OnPause()
+    {
+        paused = true;
+    }
+
+    public void OnResume()
+    {
+        paused = false;
     }
 }

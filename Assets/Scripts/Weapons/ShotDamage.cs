@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShotDamage : MonoBehaviour 
+public class ShotDamage : MonoBehaviour, IPauseable
 {
     public bool isPlayerOwned = true;
 
@@ -25,8 +25,15 @@ public class ShotDamage : MonoBehaviour
     private StraightConstantMovement movement;
     private CircleCollider2D circleCollider;
 
+    private bool paused = false;
+
     public virtual void Awake()
     {
+        if (paused)
+        {
+            return;
+        }
+
         //TODO allow other movements?
         movement = GetComponent<StraightConstantMovement>();
         //TODO allow other shot shapes?
@@ -130,5 +137,15 @@ public class ShotDamage : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void OnPause()
+    {
+        paused = true;
+    }
+
+    public void OnResume()
+    {
+        paused = false;
     }
 }
