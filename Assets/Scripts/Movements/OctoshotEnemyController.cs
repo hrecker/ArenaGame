@@ -65,6 +65,7 @@ public class OctoshotEnemyController : MonoBehaviour, IPauseable
                 {
                     currentStageTime = 0;
                     moving = false;
+                    currentVelocity = Vector2.zero;
                 }
             }
             else
