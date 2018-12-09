@@ -16,7 +16,7 @@ public class DashPlayerMovementAbility : IMovementAbility
     {
         if (!active)
         {
-            if (Input.GetButtonDown("Movement") && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0))
+            if (Input.GetAxis("TriggerLeft") > 0 && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0))
             {
                 active = true;
                 float horizontal = Input.GetAxis("Horizontal");
