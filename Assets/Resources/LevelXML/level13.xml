@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Level>
+  <LevelNumber>13</LevelNumber>
+  <Arena>SmallRectangular</Arena>
+  <CompletionPoints>500</CompletionPoints>
+  <VictoryItems>
+    <Item>Heart</Item>
+    <Item>Heart</Item>
+    <Item>Heart</Item>
+  </VictoryItems>
+  <Stage>
+    <EnemySpawn>
+      <EnemyType>MOTHER</EnemyType>
+      <SpawnLocation>
+		<X>0</X>
+		<Y>0</Y>
+	  </SpawnLocation>
+	  <SpawnTiming>0</SpawnTiming>
+	</EnemySpawn>
+  </Stage>
+  <Stage>
+    <EnemySpawn>
+      <EnemyType>MOTHER</EnemyType>
+      <SpawnLocation>
+		<X>-4</X>
+		<Y>4</Y>
+	  </SpawnLocation>
+	  <SpawnTiming>0</SpawnTiming>
+	</EnemySpawn>
+  </Stage>
+  <Stage>
+    <EnemySpawn>
+      <EnemyType>MOTHER</EnemyType>
+      <SpawnLocation>
+		<X>4</X>
+		<Y>-4</Y>
+	  </SpawnLocation>
+	  <SpawnTiming>0</SpawnTiming>
+	</EnemySpawn>
+  </Stage>
+</Level>

@@ -65,9 +65,11 @@ MonoBehaviour:
     type: 2}
   whirlerEnemy: {fileID: 1673679286969388, guid: 7265ff8a8e5303c4a9d25b8e13ed3b95,
     type: 2}
+  motherEnemy: {fileID: 1626569762200318, guid: c64ccfb95394af744b1f7b0bd7d39784,
+    type: 2}
   arenaLocator: {fileID: 114333953151534094}
   player: {fileID: 0}
-  startLevelIndexDebug: 0
+  startLevelIndexDebug: 10
 --- !u!114 &114333953151534094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -90,3 +92,5 @@ MonoBehaviour:
     spawnLocation: {x: 0, y: 50}
   - arenaName: Path
     spawnLocation: {x: 100, y: -6.5}
+  - arenaName: SquarePath
+    spawnLocation: {x: 100, y: 62}

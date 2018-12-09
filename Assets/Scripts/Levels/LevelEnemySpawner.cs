@@ -12,6 +12,7 @@ public class LevelEnemySpawner : MonoBehaviour, IPauseable
     public GameObject dashEnemy;
     public GameObject cloudbossEnemy;
     public GameObject whirlerEnemy;
+    public GameObject motherEnemy;
 
     public ArenaLocator arenaLocator;
     private Vector2 baseArenaSpawnLocation;
@@ -125,10 +126,13 @@ public class LevelEnemySpawner : MonoBehaviour, IPauseable
 
     public void EnemyDefeated(EnemyType type)
     {
-        enemiesDefeatedThisStage++;
-        if (enemiesDefeatedThisStage >= levels[currentLevelIndex].Stages[currentStageIndex].Enemies.Count)
+        if (type != EnemyType.SPAWN) // enemies spawned from other enemies don't count
         {
-            StartNextStage();
+            enemiesDefeatedThisStage++;
+            if (enemiesDefeatedThisStage >= levels[currentLevelIndex].Stages[currentStageIndex].Enemies.Count)
+            {
+                StartNextStage();
+            }
         }
     }
 
@@ -155,6 +159,8 @@ public class LevelEnemySpawner : MonoBehaviour, IPauseable
                 return cloudbossEnemy;
             case EnemyType.WHIRLER:
                 return whirlerEnemy;
+            case EnemyType.MOTHER:
+                return motherEnemy;
             default:
                 return squareEnemy;
         }

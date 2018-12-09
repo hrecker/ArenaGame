@@ -6,6 +6,8 @@
     OCTOSHOT,
     DASH,
     WHIRLER,
+    MOTHER,
+    SPAWN,
     CLOUDBOSS
 }
 
@@ -29,6 +31,10 @@ static class EnemyTypeMethods
                 return 25;
             case EnemyType.WHIRLER:
                 return 60;
+            case EnemyType.MOTHER:
+                return 200;
+            case EnemyType.SPAWN:
+                return 5;
             default:
                 return 0;
         }
