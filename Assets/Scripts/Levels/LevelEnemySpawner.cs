@@ -11,6 +11,7 @@ public class LevelEnemySpawner : MonoBehaviour, IPauseable
     public GameObject octoshotEnemy;
     public GameObject dashEnemy;
     public GameObject cloudbossEnemy;
+    public GameObject whirlerEnemy;
 
     public ArenaLocator arenaLocator;
     private Vector2 baseArenaSpawnLocation;
@@ -152,6 +153,8 @@ public class LevelEnemySpawner : MonoBehaviour, IPauseable
                 return dashEnemy;
             case EnemyType.CLOUDBOSS:
                 return cloudbossEnemy;
+            case EnemyType.WHIRLER:
+                return whirlerEnemy;
             default:
                 return squareEnemy;
         }

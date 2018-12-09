@@ -63,6 +63,8 @@ MonoBehaviour:
   dashEnemy: {fileID: 1776043967304220, guid: af01924fc38452d4faea154dd15ffdf1, type: 2}
   cloudbossEnemy: {fileID: 1889418368691768, guid: 84b316a2db8af5b4e9c6c6b2628fead6,
     type: 2}
+  whirlerEnemy: {fileID: 1673679286969388, guid: 7265ff8a8e5303c4a9d25b8e13ed3b95,
+    type: 2}
   arenaLocator: {fileID: 114333953151534094}
   player: {fileID: 0}
   startLevelIndexDebug: 0

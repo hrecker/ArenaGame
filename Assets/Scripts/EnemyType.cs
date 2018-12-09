@@ -5,6 +5,7 @@
     SHOOTER,
     OCTOSHOT,
     DASH,
+    WHIRLER,
     CLOUDBOSS
 }
 
@@ -26,6 +27,8 @@ static class EnemyTypeMethods
                 return 100;
             case EnemyType.DASH:
                 return 25;
+            case EnemyType.WHIRLER:
+                return 60;
             default:
                 return 0;
         }
