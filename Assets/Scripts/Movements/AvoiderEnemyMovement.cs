@@ -5,15 +5,15 @@ using UnityEngine;
 public class AvoiderEnemyMovement : MonoBehaviour, IPauseable
 {
     public GameObject player;
-    public float maxSpeed = 5.0f;
-    public float accelerationScalar = 3.0f;
+    public float maxSpeed = 8.0f;
+    public float forceScalar = 7500.0f;
     public float safeDistance = 8.0f;
     [Range(0, 1.0f)]
     public float movementRandomization = 0.1f;
-    private Vector2 currentVelocity = Vector2.zero;
-    private Collider2D movementCollider;
+    private Rigidbody2D body;
 
     private bool paused = false;
+    private Vector2 pausedVelocity = Vector2.zero;
 
     void Start()
     {
@@ -21,7 +21,12 @@ public class AvoiderEnemyMovement : MonoBehaviour, IPauseable
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
-        movementCollider = GetComponent<Collider2D>();
+        body = GetComponent<Rigidbody2D>();
+    }
+
+    void FixedUpdate()
+    {
+        body.velocity = Vector2.ClampMagnitude(body.velocity, maxSpeed);
     }
 
     void Update()
@@ -39,18 +44,9 @@ public class AvoiderEnemyMovement : MonoBehaviour, IPauseable
                 Vector2 direction = transform.position - player.transform.position;
                 // Add some randomization to enemy movement
                 direction = RandomizeDirection(direction);
-                Vector2 acceleration = direction.normalized * accelerationScalar;
-                currentVelocity += (acceleration * Time.deltaTime);
-
-                float velMagnitude = currentVelocity.magnitude;
-                if (velMagnitude > maxSpeed)
-                {
-                    currentVelocity = currentVelocity.normalized * maxSpeed;
-                }
-
-                currentVelocity = MovementUtilities.ResolveObstacles(movementCollider, currentVelocity, transform.position);
-                transform.Translate(currentVelocity * Time.deltaTime);
+                body.AddForce(direction.normalized * forceScalar * Time.deltaTime);
             }
+
         }
         else
         {
@@ -67,10 +63,15 @@ public class AvoiderEnemyMovement : MonoBehaviour, IPauseable
     public void OnPause()
     {
         paused = true;
+        pausedVelocity = body.velocity;
+        body.velocity = Vector2.zero;
+        body.isKinematic = true;
     }
 
     public void OnResume()
     {
         paused = false;
+        body.velocity = pausedVelocity;
+        body.isKinematic = false;
     }
 }

@@ -10,7 +10,8 @@ public class DashPlayerMovementAbility : IMovementAbility
     private float duration = 0.2f;
 
     private Vector2 dashDirection = Vector2.zero;
-    private float dashSpeed = 20.0f;
+    private float dashForce = 15000.0f;
+    private float maxVelocity = 25.0f;
 
     public bool IsActive()
     {
@@ -28,7 +29,7 @@ public class DashPlayerMovementAbility : IMovementAbility
         return active;
     }
 
-    public Vector2 GetPlayerVelocity(Vector2 previousVelocity)
+    public Vector2 GetPlayerMovementForce()
     {
         currentDurationPassed += Time.deltaTime;
         if (currentDurationPassed >= duration)
@@ -37,7 +38,12 @@ public class DashPlayerMovementAbility : IMovementAbility
             active = false;
         }
 
-        return dashSpeed * dashDirection.normalized;
+        return dashForce * dashDirection.normalized;
+    }
+
+    public float GetMaxSpeed()
+    {
+        return maxVelocity;
     }
 
     public void SetMovementDuration(float newDuration)

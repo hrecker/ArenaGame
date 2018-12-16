@@ -166,7 +166,7 @@ public class LevelEnemySpawner : MonoBehaviour, IPauseable
         }
     }
 
-    public void OnPause()
+    public void OnPause() //TODO make this work right
     {
         paused = true;
     }
