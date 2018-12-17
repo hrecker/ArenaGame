@@ -39,8 +39,7 @@ public class BasicEnemyMovement : MonoBehaviour, IPauseable
             Vector2 direction = player.transform.position - transform.position;
             // Add some randomization to enemy movement
             Vector2 randomDirection = RandomizeDirection(direction);
-            body.AddForce(direction.normalized * forceScalar * Time.deltaTime);
-            body.AddForce(randomDirection.normalized * (forceScalar / 2) * Time.deltaTime);
+            body.AddForce(randomDirection.normalized * forceScalar * Time.deltaTime);
         }
         else
         {

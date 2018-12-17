@@ -24,7 +24,7 @@ public class KamikazeEnemyMessenger : MonoBehaviour, IMessenger
         }
     }
 
-    private void Explode()
+    public void Explode()
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
         SceneMessenger.Instance.Invoke(Message.ENEMY_DEFEATED, new object[] { type });
