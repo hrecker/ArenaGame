@@ -6,12 +6,11 @@ public class BasicEnemyMovement : MonoBehaviour, IPauseable
 {
     public GameObject player;
     public float maxSpeed = 7.0f;
-    public float accelerationScalar = 3.0f;
+    public float forceScalar = 7500.0f;
     [Range(0, 1.0f)]
     public float movementRandomization = 0.1f;
-    private Vector2 currentVelocity = Vector2.zero;
-    private Collider2D movementCollider;
-
+    private Vector2 pausedVelocity = Vector2.zero;
+    private Rigidbody2D body;
     private bool paused = false;
 
     void Start ()
@@ -20,10 +19,15 @@ public class BasicEnemyMovement : MonoBehaviour, IPauseable
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
-        movementCollider = GetComponent<Collider2D>();
+        body = GetComponent<Rigidbody2D>();
     }
-	
-	void Update ()
+
+    void FixedUpdate()
+    {
+        body.velocity = Vector2.ClampMagnitude(body.velocity, maxSpeed);
+    }
+
+    void Update ()
     {
         if (paused)
         {
@@ -34,18 +38,8 @@ public class BasicEnemyMovement : MonoBehaviour, IPauseable
         {
             Vector2 direction = player.transform.position - transform.position;
             // Add some randomization to enemy movement
-            direction = RandomizeDirection(direction);
-            Vector2 acceleration = direction.normalized * accelerationScalar;
-            currentVelocity += (acceleration * Time.deltaTime);
-
-            float velMagnitude = currentVelocity.magnitude;
-            if (velMagnitude > maxSpeed)
-            {
-                currentVelocity = currentVelocity.normalized * maxSpeed;
-            }
-
-            currentVelocity = MovementUtilities.ResolveObstacles(movementCollider, currentVelocity, transform.position);
-            transform.Translate(currentVelocity * Time.deltaTime);
+            Vector2 randomDirection = RandomizeDirection(direction);
+            body.AddForce(randomDirection.normalized * forceScalar * Time.deltaTime);
         }
         else
         {
@@ -62,10 +56,15 @@ public class BasicEnemyMovement : MonoBehaviour, IPauseable
     public void OnPause()
     {
         paused = true;
+        pausedVelocity = body.velocity;
+        body.velocity = Vector2.zero;
+        body.isKinematic = true;
     }
 
     public void OnResume()
     {
         paused = false;
+        body.velocity = pausedVelocity;
+        body.isKinematic = false;
     }
 }

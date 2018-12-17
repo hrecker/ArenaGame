@@ -6,16 +6,17 @@ public class DashEnemyMovement : MonoBehaviour, IPauseable
 {
     public GameObject player;
     public float maxSpeed = 21.0f;
+    public float forceScalar = 30000.0f;
     public float dashDuration = 1.0f;
     public float dashDelay = 2.0f;
-    private Vector2 currentVelocity = Vector2.zero;
     private Vector2 dashDirection;
-    private Collider2D movementCollider;
+    private Rigidbody2D body;
     private float currentDashDuration = 0;
     private float currentDashDelay = 0;
     private bool currentlyDashing = false;
 
     private bool paused = false;
+    private Vector2 pausedVelocity = Vector2.zero;
 
     void Start()
     {
@@ -23,7 +24,12 @@ public class DashEnemyMovement : MonoBehaviour, IPauseable
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
-        movementCollider = GetComponent<Collider2D>();
+        body = GetComponent<Rigidbody2D>();
+    }
+
+    void FixedUpdate()
+    {
+        body.velocity = Vector2.ClampMagnitude(body.velocity, maxSpeed);
     }
 
     void Update()
@@ -54,11 +60,7 @@ public class DashEnemyMovement : MonoBehaviour, IPauseable
         else
         {
             currentDashDuration += Time.deltaTime;
-
-            currentVelocity = dashDirection.normalized * maxSpeed;
-
-            currentVelocity = MovementUtilities.ResolveObstacles(movementCollider, currentVelocity, transform.position);
-            transform.Translate(currentVelocity * Time.deltaTime);
+            body.AddForce(dashDirection.normalized * forceScalar * Time.deltaTime);
 
             if (currentDashDuration >= dashDuration)
             {
@@ -72,10 +74,15 @@ public class DashEnemyMovement : MonoBehaviour, IPauseable
     public void OnPause()
     {
         paused = true;
+        pausedVelocity = body.velocity;
+        body.velocity = Vector2.zero;
+        body.isKinematic = true;
     }
 
     public void OnResume()
     {
         paused = false;
+        body.velocity = pausedVelocity;
+        body.isKinematic = false;
     }
 }

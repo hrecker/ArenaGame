@@ -5,22 +5,22 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour, IPauseable
 {
-    public float maxAcceleration = 500.0f;
-    public float maxDrag = 100f;
-    public float maxVelocity = 10.0f;
-    Vector2 currentVelocity = Vector2.zero;
+    public float movementForce = 7500.0f;
+    public float maxSpeed = 15.0f;
     private bool movementEnabled;
-    private Collider2D movementCollider;
-    private bool paused = false;
+    private Rigidbody2D body;
 
     private IMovementAbility movementAbility;
+
+    private bool paused = false;
+    private Vector2 pausedVelocity;
 
     void Start ()
     {
         //SceneMessenger.Instance.AddListener(Message.STOP_PLAYER_MOVEMENT, new SceneMessenger.VoidCallback(FreezeMovement));
         //SceneMessenger.Instance.AddListener(Message.FREE_PLAYER_MOVEMENT, new SceneMessenger.VoidCallback(EnableMovement));
-        movementCollider = GetComponent<Collider2D>();
         movementAbility = new DashPlayerMovementAbility();
+        body = GetComponent<Rigidbody2D>();
         //movementEnabled = true;
 	}
 
@@ -28,8 +28,18 @@ public class PlayerMovement : MonoBehaviour, IPauseable
     {
         movementAbility = newAbility;
     }
-	
-	void Update ()
+
+    void FixedUpdate()
+    {
+        float max = maxSpeed;
+        if (movementAbility != null && movementAbility.IsActive())
+        {
+            max = movementAbility.GetMaxSpeed();
+        }
+        body.velocity = Vector2.ClampMagnitude(body.velocity, max);
+    }
+
+    void Update ()
     {
         if (paused)
         {
@@ -40,34 +50,32 @@ public class PlayerMovement : MonoBehaviour, IPauseable
             return;
         }*/
 
+        Vector2 currentForce = Vector2.zero;
         if (movementAbility != null && movementAbility.IsActive())
         {
-            currentVelocity = movementAbility.GetPlayerVelocity(currentVelocity);
+            currentForce = movementAbility.GetPlayerMovementForce();
         }
         else
         {
-            currentVelocity = NormalMovement(currentVelocity);
+            currentForce = NormalMovement();
         }
 
-        // Check for walls and obstacles
-        currentVelocity = MovementUtilities.ResolveObstacles(movementCollider, currentVelocity, transform.position);
-        // Move
-        transform.Translate(currentVelocity * Time.deltaTime);
-    }
-
-    public Vector2 GetCurrentVelocity()
-    {
-        return currentVelocity;
+        body.AddForce(currentForce * Time.deltaTime);
     }
 
     public void OnPause()
     {
         paused = true;
+        pausedVelocity = body.velocity;
+        body.velocity = Vector2.zero;
+        body.isKinematic = true;
     }
 
     public void OnResume()
     {
         paused = false;
+        body.velocity = pausedVelocity;
+        body.isKinematic = false;
     }
 
     /*public void FreezeMovement()
@@ -80,35 +88,13 @@ public class PlayerMovement : MonoBehaviour, IPauseable
         movementEnabled = true;
     }*/
 
-    private Vector2 NormalMovement(Vector2 previousVelocity)
+    private Vector2 NormalMovement()
     {
         // Get input
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        // Update velocity
-        Vector2 acceleration = (new Vector2(horizontal, vertical)) * maxAcceleration;
-        previousVelocity += (acceleration * Time.deltaTime);
-        float velMagnitude = previousVelocity.magnitude;
-
-        if (horizontal == 0 && vertical == 0)
-        {
-            Vector2 drag = -previousVelocity * (maxDrag / velMagnitude);
-            if ((maxDrag * Time.deltaTime) > velMagnitude)
-            {
-                previousVelocity = Vector2.zero;
-            }
-            else
-            {
-                previousVelocity += (drag * Time.deltaTime);
-            }
-        }
-
-        if (velMagnitude > maxVelocity)
-        {
-            previousVelocity = maxVelocity * previousVelocity.normalized;
-        }
-
-        return previousVelocity;
+        // Calculate acceleration
+        return (new Vector2(horizontal, vertical)) * movementForce;
     }
 }

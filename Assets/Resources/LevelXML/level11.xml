@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Level>
   <LevelNumber>11</LevelNumber>
-  <Arena>Diamond</Arena>
+  <Arena>SmallCircle</Arena>
   <CompletionPoints>100</CompletionPoints>
   <VictoryItems>
     <Item>Heart</Item>
@@ -39,7 +39,7 @@
       <EnemyType>WHIRLER</EnemyType>
       <SpawnLocation>
 		<X>0</X>
-		<Y>5</Y>
+		<Y>4</Y>
 	  </SpawnLocation>
 	  <SpawnTiming>0.5</SpawnTiming>
 	</EnemySpawn>
@@ -55,7 +55,7 @@
       <EnemyType>WHIRLER</EnemyType>
       <SpawnLocation>
 		<X>0</X>
-		<Y>-5</Y>
+		<Y>-4</Y>
 	  </SpawnLocation>
 	  <SpawnTiming>1.5</SpawnTiming>
 	</EnemySpawn>

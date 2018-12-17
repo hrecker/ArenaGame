@@ -36,11 +36,6 @@ public class LevelEnemySpawner : MonoBehaviour, IPauseable
 
     void Start ()
     {
-        if (paused)
-        {
-            return;
-        }
-
         SceneMessenger.Instance.AddListener(Message.ENEMY_DEFEATED, new SceneMessenger.EnemyCallback(EnemyDefeated));
         SceneMessenger.Instance.AddListener(Message.LEVEL_STARTED, new SceneMessenger.VoidCallback(StartNextLevel));
         SceneMessenger.Instance.AddListener(Message.READY_TO_START_LEVEL, new SceneMessenger.VoidCallback(MoveToArena));
@@ -103,8 +98,13 @@ public class LevelEnemySpawner : MonoBehaviour, IPauseable
         enemiesDefeatedThisStage = 0;
     }
 	
-	void Update () 
-	{
+	void Update ()
+    {
+        if (paused)
+        {
+            return;
+        }
+
         if (levelActive && !allLevelsComplete && currentLevelIndex < levels.Count && currentStageIndex < levels[currentLevelIndex].Stages.Count)
         {
             currentStageTimePassed += Time.deltaTime;
